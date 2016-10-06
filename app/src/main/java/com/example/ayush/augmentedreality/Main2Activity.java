@@ -153,6 +153,4 @@ public class Main2Activity extends AppCompatActivity implements GoogleApiClient.
         super.onPause();
     }
 
-
-
 }
