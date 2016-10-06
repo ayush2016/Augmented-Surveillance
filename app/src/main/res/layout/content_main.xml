@@ -11,7 +11,8 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
 
         <TextView
             android:id="@+id/latitude"
@@ -19,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="LATITUDE :"
+            android:text="MY LATITUDE :"
             android:textSize="20sp"
             android:textStyle="normal|bold" />
         <TextView
@@ -37,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="LONGITUDE :"
+        android:text="MY LONGITUDE :"
         android:layout_marginTop="24dp"
         android:textSize="20sp"
         android:textStyle="normal|bold" />
@@ -50,5 +51,13 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/longitude"
             android:textSize="18sp"/>
+
+    <Button
+        android:text="Activity Recognition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/activityrecognition"
+        android:layout_weight="0.11"
+        android:onClick="newActivityOnClick"/>
 
 </LinearLayout>

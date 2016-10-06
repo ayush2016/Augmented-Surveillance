@@ -139,6 +139,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         }
     }
 
+    public void newActivityOnClick(View V){
+        Intent intent=new Intent(getApplicationContext(),Main2Activity.class);
+        startActivity(intent);
+    }
+
 
 
 }
