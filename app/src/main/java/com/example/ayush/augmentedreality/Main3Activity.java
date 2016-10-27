@@ -38,9 +38,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
-import static com.example.ayush.augmentedreality.R.id.latitude;
-import static com.example.ayush.augmentedreality.R.id.longitude;
-
 public class Main3Activity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
@@ -49,7 +46,6 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
 
     LatLng latLng;
     GoogleMap mGoogleMap;
-    // SupportMapFragment mFragment;
     Marker currLocationMarker;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
@@ -68,7 +64,6 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
-      //  mDatabase = FirebaseDatabase.getInstance().getReference();
         mUserId = mFirebaseUser.getUid();
     }
 
@@ -102,7 +97,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(latLng);
             markerOptions.title("Current Position");
-            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.army));
             currLocationMarker = mGoogleMap.addMarker(markerOptions);
         }
 
@@ -133,13 +128,10 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         mCurrentLocation = location;
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        dateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
         Date date = new Date();
         mLastUpdateTime = dateFormat.format(date).toString();
 
-
-        //place marker at current position
-        //mGoogleMap.clear();
         if (currLocationMarker != null) {
             currLocationMarker.remove();
         }
@@ -153,11 +145,11 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         Toast.makeText(this,"Location Changed", Toast.LENGTH_SHORT).show();
 
         //zoom to current position:
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(latLng).zoom(14).build();
+        //CameraPosition cameraPosition = new CameraPosition.Builder()
+        //        .target(latLng).zoom(14).build();
 
-        mGoogleMap.animateCamera(CameraUpdateFactory
-                .newCameraPosition(cameraPosition));
+        //mGoogleMap.animateCamera(CameraUpdateFactory
+        //        .newCameraPosition(cameraPosition));
 
         //If you only need one location, unregister the listener
         //LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
@@ -202,8 +194,9 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
                 // Add a marker for each logged location
                 MarkerOptions mMarkerOption = new MarkerOptions()
                         .position(mLatlng)
-                        .title(mUserId + timestamp)
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.army));
+                      //  .title(mUserId + timestamp)
+                        .title(timestamp)
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.measle_blue));
                 Marker mMarker = mGoogleMap.addMarker(mMarkerOption);
                 markerList.add(mMarker);
 
@@ -219,7 +212,6 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-               // adapter.remove((String) dataSnapshot.child("title").getValue());
             }
 
             @Override
@@ -234,4 +226,3 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         });
     }
 }
-
