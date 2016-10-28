@@ -65,6 +65,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         mUserId = mFirebaseUser.getUid();
+
     }
 
     @Override
@@ -102,10 +103,9 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         }
 
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(5000); //5 seconds
-        mLocationRequest.setFastestInterval(3000); //3 seconds
+        mLocationRequest.setInterval(20000); //20 seconds
+        mLocationRequest.setFastestInterval(15000); //15 seconds
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        //mLocationRequest.setSmallestDisplacement(0.1F); //1/10 meter
 
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
     }
@@ -171,6 +171,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
     private void drawLocations() {
         // Get only latest logged locations - since 'START' button clicked
         Query queryRef = myFirebaseRef.child("users").child(mUserId).orderByChild("timestamp");
+
         // Add listener for a child added at the data at this location
         queryRef.addChildEventListener(new ChildEventListener() {
             LatLngBounds bounds;
@@ -201,8 +202,8 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
                 markerList.add(mMarker);
 
                 // Zoom map to the boundary that contains every logged location
-                mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds,
-                        MAP_ZOOM_LEVEL));
+             //   mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds,
+            //            MAP_ZOOM_LEVEL));
             }
 
             @Override
