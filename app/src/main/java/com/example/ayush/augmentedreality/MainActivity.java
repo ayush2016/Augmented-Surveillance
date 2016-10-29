@@ -140,11 +140,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     public void newActivityOnClick(View V){
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
         Intent intent=new Intent(getApplicationContext(),Main2Activity.class);
         startActivity(intent);
     }
 
     public void newMapActivityOnClick(View V){
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
         Intent intent=new Intent(getApplicationContext(),Main3Activity.class);
         startActivity(intent);
     }

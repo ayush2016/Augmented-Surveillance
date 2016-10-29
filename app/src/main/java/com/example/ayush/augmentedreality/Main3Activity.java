@@ -226,4 +226,13 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
             }
         });
     }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
+    }
 }
