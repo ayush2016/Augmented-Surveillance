@@ -40,7 +40,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCL9T0AkzxblqfhfPAJQh8vIVswJoGtiMg" />
 
-        <activity android:name=".Main3Activity"></activity>
+        <activity android:name=".Main3Activity" />
+        <activity android:name=".Main4Activity"></activity>
     </application>
 
 </manifest>

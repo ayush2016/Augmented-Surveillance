@@ -155,6 +155,14 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         startActivity(intent);
     }
 
+    public void newDataActivityOnClick(View V){
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
+        Intent intent=new Intent(getApplicationContext(),Main4Activity.class);
+        startActivity(intent);
+    }
+
 
 
 }

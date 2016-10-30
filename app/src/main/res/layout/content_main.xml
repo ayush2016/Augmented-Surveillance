@@ -65,4 +65,11 @@
         android:id="@+id/activityrecognition"
         android:onClick="newActivityOnClick"/>
 
+    <Button
+        android:text="MASTER DATA"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/masterdata"
+        android:onClick="newDataActivityOnClick"/>
+
 </LinearLayout>
