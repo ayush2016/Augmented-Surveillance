@@ -13,6 +13,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Iterator;
+
 public class Main4Activity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
@@ -40,7 +42,12 @@ public class Main4Activity extends AppCompatActivity {
         mDatabase.child("users").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                adapter.add("UID: " + dataSnapshot.getKey() + " Latest Location: " + dataSnapshot.child("timestamp").getValue());
+                Iterator iterator = dataSnapshot.getChildren().iterator();
+                Object data = iterator.next();
+                while(iterator.hasNext()){
+                    data = iterator.next();
+                }
+                adapter.add("UID: " + dataSnapshot.getKey() + " Latest Information: " + data);
             }
 
             @Override
