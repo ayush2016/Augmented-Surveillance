@@ -161,6 +161,14 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         startActivity(intent);
     }
 
+    public void newAccelerometerActivityOnClick(View V){
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
+        Intent intent=new Intent(getApplicationContext(),Main5Activity.class);
+        startActivity(intent);
+    }
+
 
 
 }

@@ -72,4 +72,11 @@
         android:id="@+id/masterdata"
         android:onClick="newDataActivityOnClick"/>
 
+    <Button
+        android:text="ACCELEROMETER"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/accelerometer"
+        android:onClick="newAccelerometerActivityOnClick"/>
+
 </LinearLayout>
