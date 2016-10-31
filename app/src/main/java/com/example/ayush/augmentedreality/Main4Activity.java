@@ -57,7 +57,7 @@ public class Main4Activity extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                adapter.remove("UID: " + dataSnapshot.getKey() + " Latest Location: " + dataSnapshot.child("timestamp").getValue());
+                adapter.remove("UID: " + dataSnapshot.getKey());
             }
 
             @Override
