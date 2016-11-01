@@ -25,6 +25,7 @@ public class Main5Activity extends AppCompatActivity implements SensorEventListe
     private TextView currentX, currentY, currentZ, maxX, maxY, maxZ;
     public Vibrator v;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,12 +85,15 @@ public class Main5Activity extends AppCompatActivity implements SensorEventListe
         deltaY = Math.abs(lastY - event.values[1]);
         deltaZ = Math.abs(lastZ - event.values[2]);
 
-        // if the change is below 2, it is just plain noise
-        if (deltaX < 2)
-        deltaX = 0;
-        if (deltaY < 2)
-        deltaY = 0;
-        if ((deltaZ > vibrateThreshold) || (deltaY > vibrateThreshold) || (deltaZ > vibrateThreshold)) {
+        // if the change is below 1, it is just plain noise
+        if (deltaX < 1)
+            deltaX = 0;
+        if (deltaY < 1)
+            deltaY = 0;
+        if (deltaZ < 1)
+            deltaZ = 0;
+
+        if ((deltaX > vibrateThreshold) || (deltaY > vibrateThreshold) || (deltaZ > vibrateThreshold)) {
             v.vibrate(50);
         }
 
@@ -114,7 +118,7 @@ public class Main5Activity extends AppCompatActivity implements SensorEventListe
         currentZ.setText(Float.toString(deltaZ));
     }
 
-            // display the max x,y,z accelerometer values
+    // display the max x,y,z accelerometer values
     public void displayMaxValues() {
         if (deltaX > deltaXMax) {
             deltaXMax = deltaX;
