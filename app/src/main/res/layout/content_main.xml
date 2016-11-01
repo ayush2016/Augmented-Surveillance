@@ -86,4 +86,11 @@
         android:id="@+id/gyroscope"
         android:onClick="newGyroscopeActivityOnClick"/>
 
+    <Button
+        android:text="MAGNETOMETER"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/magnetometer"
+        android:onClick="newMagnetometerActivityOnClick"/>
+
 </LinearLayout>

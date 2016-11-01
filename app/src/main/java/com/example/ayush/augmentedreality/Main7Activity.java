@@ -10,29 +10,26 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static com.example.ayush.augmentedreality.R.id.accelerometer;
-
-public class Main6Activity extends AppCompatActivity implements SensorEventListener {
+public class Main7Activity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
-    private Sensor gyroscope;
+    private Sensor magnetometer;
     private TextView currentX, currentY, currentZ;
-    float[] angular_speed = {0.0f, 0.0f, 0.0f};
-
+    float[] magnetic_field = {0.0f, 0.0f, 0.0f};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main6);
+        setContentView(R.layout.activity_main7);
         initializeViews();
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        if (sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null) {
-            // success! we have a gyroscope
-            gyroscope = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
-            sensorManager.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_GAME);
+        if (sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD) != null) {
+            // success! we have a magnetometer
+            magnetometer = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+            sensorManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_GAME);
         } else {
-            // fail we don't have a gyroscope!
-            Toast.makeText(this, "Sorry, you don't have a gyroscope!", Toast.LENGTH_SHORT).show();
+            // fail we don't have a magnetometer!
+            Toast.makeText(this, "Sorry, you don't have a magnetometer!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -41,13 +38,13 @@ public class Main6Activity extends AppCompatActivity implements SensorEventListe
         currentY = (TextView) findViewById(R.id.currentY);
         currentZ = (TextView) findViewById(R.id.currentZ);
     }
-    //onResume() register the gyroscope for listening the events
+    //onResume() register the magnetometer for listening the events
 
     protected void onResume() {
         super.onResume();
-        sensorManager.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_GAME);
+        sensorManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_GAME);
     }
-    //onPause() unregister the gyroscope for stop listening the events
+    //onPause() unregister the magnetometer for stop listening the events
     protected void onPause() {
         super.onPause();
         sensorManager.unregisterListener(this);
@@ -63,12 +60,12 @@ public class Main6Activity extends AppCompatActivity implements SensorEventListe
         // clean current values
         displayCleanValues();
 
-        // display the current x,y,z gyroscope values
+        // display the current x,y,z magnetometer values
         displayCurrentValues();
 
-        angular_speed[0] = event.values[0];
-        angular_speed[1] = event.values[1];
-        angular_speed[2] = event.values[2];
+        magnetic_field[0] = event.values[0];
+        magnetic_field[1] = event.values[1];
+        magnetic_field[2] = event.values[2];
 
     }
 
@@ -78,12 +75,12 @@ public class Main6Activity extends AppCompatActivity implements SensorEventListe
         currentZ.setText("0.0");
     }
 
-    // display the current x,y,z gyroscope values
+    // display the current x,y,z magnetometer values
 
     public void displayCurrentValues() {
-        currentX.setText(Float.toString(angular_speed[0]));
-        currentY.setText(Float.toString(angular_speed[1]));
-        currentZ.setText(Float.toString(angular_speed[2]));
+        currentX.setText(Float.toString(magnetic_field[0]));
+        currentY.setText(Float.toString(magnetic_field[1]));
+        currentZ.setText(Float.toString(magnetic_field[2]));
     }
 
 }

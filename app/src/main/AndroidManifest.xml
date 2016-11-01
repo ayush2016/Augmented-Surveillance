@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
@@ -42,7 +43,8 @@
         <activity android:name=".Main3Activity" />
         <activity android:name=".Main4Activity" />
         <activity android:name=".Main5Activity" />
-        <activity android:name=".Main6Activity"></activity>
+        <activity android:name=".Main6Activity" />
+        <activity android:name=".Main7Activity"></activity>
     </application>
 
 </manifest>

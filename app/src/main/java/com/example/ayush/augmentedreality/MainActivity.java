@@ -177,4 +177,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         startActivity(intent);
     }
 
+    public void newMagnetometerActivityOnClick(View V){
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
+        Intent intent=new Intent(getApplicationContext(),Main7Activity.class);
+        startActivity(intent);
+    }
+
 }
