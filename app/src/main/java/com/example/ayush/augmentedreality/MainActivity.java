@@ -169,6 +169,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         startActivity(intent);
     }
 
-
+    public void newGyroscopeActivityOnClick(View V){
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
+        Intent intent=new Intent(getApplicationContext(),Main6Activity.class);
+        startActivity(intent);
+    }
 
 }

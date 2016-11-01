@@ -79,4 +79,11 @@
         android:id="@+id/accelerometer"
         android:onClick="newAccelerometerActivityOnClick"/>
 
+    <Button
+        android:text="GYROSCOPE"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/gyroscope"
+        android:onClick="newGyroscopeActivityOnClick"/>
+
 </LinearLayout>
