@@ -1,21 +1,21 @@
 package com.example.ayush.augmentedreality;
 
 import android.location.Location;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -47,12 +47,9 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
     LatLng latLng;
     GoogleMap mGoogleMap;
     Marker currLocationMarker;
-    private FirebaseAuth mFirebaseAuth;
-    private FirebaseUser mFirebaseUser;
     private String mUserId;
-    private DatabaseReference myFirebaseRef=FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference myFirebaseRef = FirebaseDatabase.getInstance().getReference();
     List<Marker> markerList = new ArrayList<>();
-    public static final int MAP_ZOOM_LEVEL = 7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +59,9 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        assert mFirebaseUser != null;
         mUserId = mFirebaseUser.getUid();
 
     }
@@ -78,7 +76,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
     }
 
     protected synchronized void buildGoogleApiClient() {
-        Toast.makeText(this,"buildGoogleApiClient",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "buildGoogleApiClient", Toast.LENGTH_SHORT).show();
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -88,12 +86,10 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
 
     @Override
     public void onConnected(Bundle bundle) {
-        Toast.makeText(this,"onConnected",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "onConnected", Toast.LENGTH_SHORT).show();
         Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
         if (mLastLocation != null) {
-            //place marker at current position
-            //mGoogleMap.clear();
             latLng = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(latLng);
@@ -103,8 +99,8 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         }
 
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(20000); //20 seconds
-        mLocationRequest.setFastestInterval(15000); //15 seconds
+        mLocationRequest.setInterval(20000);
+        mLocationRequest.setFastestInterval(15000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
@@ -112,12 +108,12 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
 
     @Override
     public void onConnectionSuspended(int i) {
-        Toast.makeText(this,"onConnectionSuspended",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "onConnectionSuspended", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        Toast.makeText(this,"onConnectionFailed",Toast.LENGTH_SHORT).show();
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Toast.makeText(this, "onConnectionFailed", Toast.LENGTH_SHORT).show();
     }
 
     Location mCurrentLocation;
@@ -130,7 +126,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         dateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
         Date date = new Date();
-        mLastUpdateTime = dateFormat.format(date).toString();
+        mLastUpdateTime = dateFormat.format(date);
 
         if (currLocationMarker != null) {
             currLocationMarker.remove();
@@ -142,26 +138,15 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.army));
         currLocationMarker = mGoogleMap.addMarker(markerOptions);
 
-        Toast.makeText(this,"Location Changed", Toast.LENGTH_SHORT).show();
-
-        //zoom to current position:
-        //CameraPosition cameraPosition = new CameraPosition.Builder()
-        //        .target(latLng).zoom(14).build();
-
-        //mGoogleMap.animateCamera(CameraUpdateFactory
-        //        .newCameraPosition(cameraPosition));
-
-        //If you only need one location, unregister the listener
-        //LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+        Toast.makeText(this, "Location Changed", Toast.LENGTH_SHORT).show();
         saveToFirebase();
-        // Retrieve saved locations and draw as marker on map
         drawLocations();
     }
 
     private void saveToFirebase() {
-        Map mLocations = new HashMap();
+        Map<String, Object> mLocations = new HashMap<String, Object>();
         mLocations.put("timestamp", mLastUpdateTime);
-        Map  mCoordinate = new HashMap();
+        Map<String, Double> mCoordinate = new HashMap<String, Double>();
         mCoordinate.put("latitude", mCurrentLocation.getLatitude());
         mCoordinate.put("longitude", mCurrentLocation.getLongitude());
         mLocations.put("location", mCoordinate);
@@ -169,41 +154,31 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
     }
 
     private void drawLocations() {
-        // Get only latest logged locations - since 'START' button clicked
         Query queryRef = myFirebaseRef.child("users").child(mUserId).orderByChild("timestamp");
-
-        // Add listener for a child added at the data at this location
         queryRef.addChildEventListener(new ChildEventListener() {
             LatLngBounds bounds;
             LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Map  data = (Map ) dataSnapshot.getValue();
+                Map data = (Map) dataSnapshot.getValue();
                 String timestamp = (String) data.get("timestamp");
-                // Get recorded latitude and longitude
-                Map  mCoordinate = (HashMap)data.get("location");
+                Map mCoordinate = (HashMap) data.get("location");
                 double latitude = (double) (mCoordinate.get("latitude"));
                 double longitude = (double) (mCoordinate.get("longitude"));
 
-                // Create LatLng for each locations
                 LatLng mLatlng = new LatLng(latitude, longitude);
 
-                // Make sure the map boundary contains the location
                 builder.include(mLatlng);
                 bounds = builder.build();
 
-                // Add a marker for each logged location
                 MarkerOptions mMarkerOption = new MarkerOptions()
                         .position(mLatlng)
-                      //  .title(mUserId + timestamp)
                         .title(timestamp)
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.measle_blue));
                 Marker mMarker = mGoogleMap.addMarker(mMarkerOption);
                 markerList.add(mMarker);
 
-                // Zoom map to the boundary that contains every logged location
-             //   mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds,
-            //            MAP_ZOOM_LEVEL));
             }
 
             @Override
@@ -227,12 +202,16 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         });
     }
 
-
     @Override
     protected void onStop() {
         super.onStop();
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 }

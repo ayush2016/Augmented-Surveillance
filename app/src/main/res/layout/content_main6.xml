@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center"
     android:background="#ffffff"
     android:gravity="center"
     android:orientation="vertical"
     android:paddingTop="20dp"
-    tools:context=".MainActivity"
+    tools:context=".Main6Activity"
     tools:showIn="@layout/activity_main6">
 
 
@@ -18,15 +18,15 @@
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="30dp"
-        android:text="GYROSCOPE DATA"
-        android:textSize="20dp" />
+        android:text="@string/gyroscope_data"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffffff"
         android:gravity="center|top"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -34,14 +34,14 @@
             android:layout_weight="0.33"
             android:background="#ffffff"
             android:gravity="center"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:text="X-Axis"
+                android:text="@string/x_axis"
                 android:textSize="15dp" />
 
 
@@ -51,8 +51,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:text="0.0"
-                android:textSize="15dp" />
+                android:text="@string/_0_0"
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -61,15 +61,15 @@
             android:layout_weight="0.33"
             android:background="#ffffff"
             android:gravity="center"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:text="Y-Axis"
-                android:textSize="15dp" />
+                android:text="@string/y_axis"
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/currentY"
@@ -77,8 +77,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:text="0.0"
-                android:textSize="15dp" />
+                android:text="@string/_0_0"
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -87,14 +87,14 @@
             android:layout_weight="0.33"
             android:background="#ffffff"
             android:gravity="center"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:text="Z-Axis"
+                android:text="@string/z_axis"
                 android:textSize="15dp" />
 
             <TextView
@@ -103,8 +103,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:text="0.0"
-                android:textSize="15dp" />
+                android:text="@string/_0_0"
+                android:textSize="15sp" />
 
         </LinearLayout>
     </LinearLayout>

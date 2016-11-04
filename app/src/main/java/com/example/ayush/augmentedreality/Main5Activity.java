@@ -5,7 +5,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -19,7 +18,7 @@ public class Main5Activity extends AppCompatActivity implements SensorEventListe
     private TextView currentX, currentY, currentZ;
 
     final float alpha = 0.8f;
-    float[] gravity = {0.0f,0.0f,0.0f};
+    float[] gravity = {0.0f, 0.0f, 0.0f};
     float[] linear_acceleration = {0.0f, 0.0f, 0.0f};
 
 
@@ -30,11 +29,9 @@ public class Main5Activity extends AppCompatActivity implements SensorEventListe
         initializeViews();
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         if (sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null) {
-            // success! we have an accelerometer
             accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
             sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
         } else {
-            // fail we don't have an accelerometer!
             Toast.makeText(this, "Sorry, you don't have a gyroscope!", Toast.LENGTH_SHORT).show();
         }
 
@@ -45,13 +42,12 @@ public class Main5Activity extends AppCompatActivity implements SensorEventListe
         currentY = (TextView) findViewById(R.id.currentY);
         currentZ = (TextView) findViewById(R.id.currentZ);
     }
-    //onResume() register the accelerometer for listening the events
 
     protected void onResume() {
         super.onResume();
         sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
-    //onPause() unregister the accelerometer for stop listening the events
+
     protected void onPause() {
         super.onPause();
         sensorManager.unregisterListener(this);
@@ -64,15 +60,8 @@ public class Main5Activity extends AppCompatActivity implements SensorEventListe
     @Override
     public void onSensorChanged(SensorEvent event) {
 
-        // clean current values
         displayCleanValues();
-
-        // display the current x,y,z accelerometer values
         displayCurrentValues();
-
-        // alpha is calculated as t / (t + dT)
-        // with t, the low-pass filter's time-constant
-        // and dT, the event delivery rate
 
         gravity[0] = alpha * gravity[0] + (1 - alpha) * event.values[0];
         gravity[1] = alpha * gravity[1] + (1 - alpha) * event.values[1];
@@ -90,7 +79,6 @@ public class Main5Activity extends AppCompatActivity implements SensorEventListe
         currentZ.setText("0.0");
     }
 
-            // display the current x,y,z accelerometer values
 
     public void displayCurrentValues() {
         currentX.setText(Float.toString(linear_acceleration[0]));

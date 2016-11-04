@@ -16,6 +16,7 @@ public class Main7Activity extends AppCompatActivity implements SensorEventListe
     private Sensor magnetometer;
     private TextView currentX, currentY, currentZ;
     float[] magnetic_field = {0.0f, 0.0f, 0.0f};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,11 +25,9 @@ public class Main7Activity extends AppCompatActivity implements SensorEventListe
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         if (sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD) != null) {
-            // success! we have a magnetometer
             magnetometer = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
             sensorManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_GAME);
         } else {
-            // fail we don't have a magnetometer!
             Toast.makeText(this, "Sorry, you don't have a magnetometer!", Toast.LENGTH_SHORT).show();
         }
     }
@@ -38,13 +37,12 @@ public class Main7Activity extends AppCompatActivity implements SensorEventListe
         currentY = (TextView) findViewById(R.id.currentY);
         currentZ = (TextView) findViewById(R.id.currentZ);
     }
-    //onResume() register the magnetometer for listening the events
 
     protected void onResume() {
         super.onResume();
         sensorManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_GAME);
     }
-    //onPause() unregister the magnetometer for stop listening the events
+
     protected void onPause() {
         super.onPause();
         sensorManager.unregisterListener(this);
@@ -56,11 +54,7 @@ public class Main7Activity extends AppCompatActivity implements SensorEventListe
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-
-        // clean current values
         displayCleanValues();
-
-        // display the current x,y,z magnetometer values
         displayCurrentValues();
 
         magnetic_field[0] = event.values[0];
@@ -74,8 +68,6 @@ public class Main7Activity extends AppCompatActivity implements SensorEventListe
         currentY.setText("0.0");
         currentZ.setText("0.0");
     }
-
-    // display the current x,y,z magnetometer values
 
     public void displayCurrentValues() {
         currentX.setText(Float.toString(magnetic_field[0]));

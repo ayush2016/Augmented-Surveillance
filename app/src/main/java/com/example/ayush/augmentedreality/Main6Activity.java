@@ -27,11 +27,9 @@ public class Main6Activity extends AppCompatActivity implements SensorEventListe
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         if (sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null) {
-            // success! we have a gyroscope
             gyroscope = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
             sensorManager.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_GAME);
         } else {
-            // fail we don't have a gyroscope!
             Toast.makeText(this, "Sorry, you don't have a gyroscope!", Toast.LENGTH_SHORT).show();
         }
     }
@@ -41,13 +39,12 @@ public class Main6Activity extends AppCompatActivity implements SensorEventListe
         currentY = (TextView) findViewById(R.id.currentY);
         currentZ = (TextView) findViewById(R.id.currentZ);
     }
-    //onResume() register the gyroscope for listening the events
 
     protected void onResume() {
         super.onResume();
         sensorManager.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_GAME);
     }
-    //onPause() unregister the gyroscope for stop listening the events
+
     protected void onPause() {
         super.onPause();
         sensorManager.unregisterListener(this);
@@ -59,11 +56,7 @@ public class Main6Activity extends AppCompatActivity implements SensorEventListe
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-
-        // clean current values
         displayCleanValues();
-
-        // display the current x,y,z gyroscope values
         displayCurrentValues();
 
         angular_speed[0] = event.values[0];
@@ -77,8 +70,6 @@ public class Main6Activity extends AppCompatActivity implements SensorEventListe
         currentY.setText("0.0");
         currentZ.setText("0.0");
     }
-
-    // display the current x,y,z gyroscope values
 
     public void displayCurrentValues() {
         currentX.setText(Float.toString(angular_speed[0]));

@@ -13,7 +13,6 @@
     <string name="sign_up_text">Sign Up!</string>
     <string name="title_activity_login">Sign in</string>
     <string name="action_logout">Logout</string>
-
     <string name="in_vehicle">In a vehicle</string>
     <string name="on_bicycle">On a bicycle</string>
     <string name="on_foot">On foot</string>
@@ -23,4 +22,21 @@
     <string name="tilting">Tilting</string>
     <string name="unknown">Unknown activity</string>
     <string name="unidentifiable_activity">Unidentifiable activity: %1$d</string>
+    <string name="longitude">LONGITUDE</string>
+    <string name="latitude">LATITUDE</string>
+    <string name="magnetometer">MAGNETOMETER</string>
+    <string name="gyroscope">GYROSCOPE</string>
+    <string name="accelerometer">ACCELEROMETER</string>
+    <string name="master_data">MASTER DATA</string>
+    <string name="activity_recognition">Activity Recognition</string>
+    <string name="map">MAP</string>
+    <string name="remove_activity_updates">Remove Activity Updates</string>
+    <string name="request_activity_updates">Request Activity Updates</string>
+    <string name="accelerometer_data">ACCELEROMETER DATA</string>
+    <string name="x_axis">X-Axis</string>
+    <string name="_0_0">0.0</string>
+    <string name="y_axis">Y-Axis</string>
+    <string name="z_axis">Z-Axis</string>
+    <string name="gyroscope_data">GYROSCOPE DATA</string>
+    <string name="magnetometer_data">MAGNETOMETER DATA</string>
 </resources>

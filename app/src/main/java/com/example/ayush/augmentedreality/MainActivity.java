@@ -3,8 +3,7 @@ package com.example.ayush.augmentedreality;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -50,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         if (mFirebaseUser == null) {
-            // Not logged in, launch the Log In activity
             loadLogInView();
         }
 
@@ -66,25 +64,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
             mFirebaseAuth.signOut();
             loadLogInView();
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -119,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.i(TAG, "Connection failed. Error: " + connectionResult.getErrorCode());
     }
 
@@ -137,51 +127,51 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         }
     }
 
-    public void newActivityOnClick(View V){
+    public void newActivityOnClick(View V) {
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
-        Intent intent=new Intent(getApplicationContext(),Main2Activity.class);
+        Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
         startActivity(intent);
     }
 
-    public void newMapActivityOnClick(View V){
+    public void newMapActivityOnClick(View V) {
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
-        Intent intent=new Intent(getApplicationContext(),Main3Activity.class);
+        Intent intent = new Intent(getApplicationContext(), Main3Activity.class);
         startActivity(intent);
     }
 
-    public void newDataActivityOnClick(View V){
+    public void newDataActivityOnClick(View V) {
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
-        Intent intent=new Intent(getApplicationContext(),Main4Activity.class);
+        Intent intent = new Intent(getApplicationContext(), Main4Activity.class);
         startActivity(intent);
     }
 
-    public void newAccelerometerActivityOnClick(View V){
+    public void newAccelerometerActivityOnClick(View V) {
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
-        Intent intent=new Intent(getApplicationContext(),Main5Activity.class);
+        Intent intent = new Intent(getApplicationContext(), Main5Activity.class);
         startActivity(intent);
     }
 
-    public void newGyroscopeActivityOnClick(View V){
+    public void newGyroscopeActivityOnClick(View V) {
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
-        Intent intent=new Intent(getApplicationContext(),Main6Activity.class);
+        Intent intent = new Intent(getApplicationContext(), Main6Activity.class);
         startActivity(intent);
     }
 
-    public void newMagnetometerActivityOnClick(View V){
+    public void newMagnetometerActivityOnClick(View V) {
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
-        Intent intent=new Intent(getApplicationContext(),Main7Activity.class);
+        Intent intent = new Intent(getApplicationContext(), Main7Activity.class);
         startActivity(intent);
     }
 

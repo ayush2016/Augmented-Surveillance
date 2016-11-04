@@ -3,11 +3,14 @@ package com.example.ayush.augmentedreality;
 /**
  * Created by ayush on 6/10/16.
  */
+
 import android.app.IntentService;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
+
 import com.google.android.gms.location.ActivityRecognitionResult;
 import com.google.android.gms.location.DetectedActivity;
+
 import java.util.ArrayList;
 
 public class ActivitiesIntentService extends IntentService {
