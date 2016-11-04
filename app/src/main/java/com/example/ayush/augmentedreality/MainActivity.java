@@ -29,13 +29,8 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     private FirebaseAuth mFirebaseAuth;
-    private FirebaseUser mFirebaseUser;
-
-
     private static final String TAG = "MainActivity";
     private GoogleApiClient mGoogleApiClient;
-    private LocationRequest mLocationRequest;
-    private String mLastUpdateTime;
     private TextView mLatitudeTextView;
     private TextView mLongitudeTextView;
 
@@ -48,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         setSupportActionBar(toolbar);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         if (mFirebaseUser == null) {
             loadLogInView();
@@ -89,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     public void onConnected(Bundle bundle) {
-        mLocationRequest = LocationRequest.create();
+        LocationRequest mLocationRequest = LocationRequest.create();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setInterval(20000);
         mLocationRequest.setFastestInterval(15000);
@@ -104,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     public void onLocationChanged(Location location) {
-        mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
+        String mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
         mLatitudeTextView.setText(String.valueOf(location.getLatitude()));
         mLongitudeTextView.setText(String.valueOf(location.getLongitude()));
         Toast.makeText(this, "Updated: " + mLastUpdateTime, Toast.LENGTH_SHORT).show();
