@@ -72,7 +72,6 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         mGoogleMap.setMyLocationEnabled(true);
         buildGoogleApiClient();
         mGoogleApiClient.connect();
-
     }
 
     protected synchronized void buildGoogleApiClient() {
@@ -201,6 +200,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
             }
         });
     }
+
 
     @Override
     protected void onStop() {

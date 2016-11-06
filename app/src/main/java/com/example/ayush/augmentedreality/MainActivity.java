@@ -126,6 +126,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        stopLocationUpdates();
+    }
+
+    protected void stopLocationUpdates() {
+        LocationServices.FusedLocationApi.removeLocationUpdates(
+                mGoogleApiClient, this);
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
         if (mGoogleApiClient.isConnected()) {
@@ -134,49 +145,31 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     public void newActivityOnClick(View V) {
-        if (mGoogleApiClient.isConnected()) {
-            mGoogleApiClient.disconnect();
-        }
         Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
         startActivity(intent);
     }
 
     public void newMapActivityOnClick(View V) {
-        if (mGoogleApiClient.isConnected()) {
-            mGoogleApiClient.disconnect();
-        }
         Intent intent = new Intent(getApplicationContext(), Main3Activity.class);
         startActivity(intent);
     }
 
     public void newDataActivityOnClick(View V) {
-        if (mGoogleApiClient.isConnected()) {
-            mGoogleApiClient.disconnect();
-        }
         Intent intent = new Intent(getApplicationContext(), Main4Activity.class);
         startActivity(intent);
     }
 
     public void newAccelerometerActivityOnClick(View V) {
-        if (mGoogleApiClient.isConnected()) {
-            mGoogleApiClient.disconnect();
-        }
         Intent intent = new Intent(getApplicationContext(), Main5Activity.class);
         startActivity(intent);
     }
 
     public void newGyroscopeActivityOnClick(View V) {
-        if (mGoogleApiClient.isConnected()) {
-            mGoogleApiClient.disconnect();
-        }
         Intent intent = new Intent(getApplicationContext(), Main6Activity.class);
         startActivity(intent);
     }
 
     public void newMagnetometerActivityOnClick(View V) {
-        if (mGoogleApiClient.isConnected()) {
-            mGoogleApiClient.disconnect();
-        }
         Intent intent = new Intent(getApplicationContext(), Main7Activity.class);
         startActivity(intent);
     }
