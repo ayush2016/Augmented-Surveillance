@@ -84,4 +84,11 @@
         android:onClick="newMagnetometerActivityOnClick"
         android:text="@string/magnetometer" />
 
+    <Button
+        android:id="@+id/scan_qr_code"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:onClick="newScanQRCodeActivityOnClick"
+        android:text="@string/scan_qr_code" />
+
 </LinearLayout>

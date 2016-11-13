@@ -174,4 +174,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         startActivity(intent);
     }
 
+    public void newScanQRCodeActivityOnClick(View V) {
+        Intent intent = new Intent(getApplicationContext(), Main8Activity.class);
+        startActivity(intent);
+    }
 }

@@ -39,4 +39,6 @@
     <string name="z_axis">Z-Axis</string>
     <string name="gyroscope_data">GYROSCOPE DATA</string>
     <string name="magnetometer_data">MAGNETOMETER DATA</string>
+    <string name="scan_quick_response_code">Scan Quick Response Code</string>
+    <string name="scan_qr_code">Scan QR Code</string>
 </resources>
