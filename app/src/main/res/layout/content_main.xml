@@ -15,31 +15,12 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/gps_coordinates"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:text="@string/latitude"
-        android:textSize="18sp"
-        android:textStyle="normal|bold" />
-
-    <TextView
-        android:id="@+id/latitude_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/longitude"
-        android:textSize="18sp"
-        android:textStyle="normal|bold" />
-
-    <TextView
-        android:id="@+id/longitude_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp" />
+        android:onClick="newGPSCoordinatesActivityOnClick"
+        android:text="@string/gps_coordinates" />
 
     <Button
         android:id="@+id/map"
@@ -48,16 +29,15 @@
         android:onClick="newMapActivityOnClick"
         android:text="@string/map" />
 
-
     <Button
-        android:id="@+id/activityrecognition"
+        android:id="@+id/activity_recognition"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:onClick="newActivityOnClick"
         android:text="@string/activity_recognition" />
 
     <Button
-        android:id="@+id/masterdata"
+        android:id="@+id/master_data"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:onClick="newDataActivityOnClick"

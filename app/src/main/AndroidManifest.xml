@@ -46,6 +46,7 @@
         <activity android:name=".Main6Activity" />
         <activity android:name=".Main7Activity" />
         <activity android:name=".Main8Activity" />
+        <activity android:name=".Main9Activity"></activity>
     </application>
 
 </manifest>

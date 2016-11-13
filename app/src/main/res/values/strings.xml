@@ -41,4 +41,5 @@
     <string name="magnetometer_data">MAGNETOMETER DATA</string>
     <string name="scan_quick_response_code">Scan Quick Response Code</string>
     <string name="scan_qr_code">Scan QR Code</string>
+    <string name="gps_coordinates">GPS Coordinates</string>
 </resources>
