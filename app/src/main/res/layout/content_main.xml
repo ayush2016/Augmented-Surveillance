@@ -71,4 +71,11 @@
         android:onClick="newScanQRCodeActivityOnClick"
         android:text="@string/scan_qr_code" />
 
+    <Button
+        android:id="@+id/generate_qr_code"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:onClick="newGenerateQRCodeActivityOnClick"
+        android:text="@string/generate_qr_code" />
+
 </LinearLayout>

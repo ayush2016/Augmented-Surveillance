@@ -42,4 +42,7 @@
     <string name="scan_quick_response_code">Scan Quick Response Code</string>
     <string name="scan_qr_code">Scan QR Code</string>
     <string name="gps_coordinates">GPS Coordinates</string>
+    <string name="generate_location_qr_code">Generate Location QR Code</string>
+    <string name="generate_qr_code">Generate QR Code</string>
+    <string name="location_based_qr_code">Location-based QR Code</string>
 </resources>
