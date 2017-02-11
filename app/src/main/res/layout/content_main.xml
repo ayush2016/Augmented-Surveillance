@@ -78,4 +78,11 @@
         android:onClick="newGenerateQRCodeActivityOnClick"
         android:text="@string/generate_qr_code" />
 
+    <Button
+        android:id="@+id/face_detection"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:onClick="newFaceDetectionActivityOnClick"
+        android:text="@string/face_detection" />
+
 </LinearLayout>

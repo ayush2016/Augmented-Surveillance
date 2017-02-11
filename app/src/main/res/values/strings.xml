@@ -45,4 +45,5 @@
     <string name="generate_location_qr_code">Generate Location QR Code</string>
     <string name="generate_qr_code">Generate QR Code</string>
     <string name="location_based_qr_code">Location-based QR Code</string>
+    <string name="face_detection">Face Detection</string>
 </resources>

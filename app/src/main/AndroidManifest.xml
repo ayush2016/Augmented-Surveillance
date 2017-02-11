@@ -39,6 +39,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCL9T0AkzxblqfhfPAJQh8vIVswJoGtiMg" />
+        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="face"/>
 
         <activity android:name=".Main3Activity" />
         <activity android:name=".Main4Activity" />
@@ -47,7 +48,8 @@
         <activity android:name=".Main7Activity" />
         <activity android:name=".Main8Activity" />
         <activity android:name=".Main9Activity" />
-        <activity android:name=".Main10Activity"></activity>
+        <activity android:name=".Main10Activity" />
+        <activity android:name=".Main11Activity"></activity>
     </application>
 
 </manifest>

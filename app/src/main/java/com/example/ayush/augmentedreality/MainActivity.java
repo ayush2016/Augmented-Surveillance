@@ -96,4 +96,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), Main10Activity.class);
         startActivity(intent);
     }
+
+    public void newFaceDetectionActivityOnClick(View V) {
+        Intent intent = new Intent(getApplicationContext(), Main11Activity.class);
+        startActivity(intent);
+    }
 }
