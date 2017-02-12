@@ -101,4 +101,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), Main11Activity.class);
         startActivity(intent);
     }
+
+
+    public void newVideoFaceDetectionActivityOnClick(View V) {
+        Intent intent = new Intent(getApplicationContext(), FaceTrackerActivity.class);
+        startActivity(intent);
+    }
 }

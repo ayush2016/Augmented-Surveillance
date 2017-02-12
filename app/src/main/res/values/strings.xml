@@ -46,4 +46,9 @@
     <string name="generate_qr_code">Generate QR Code</string>
     <string name="location_based_qr_code">Location-based QR Code</string>
     <string name="face_detection">Face Detection</string>
+    <string name="ok">OK</string>
+    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
+    <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
+    <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
+    <string name="video_face_detection">VIDEO FACE DETECTION</string>
 </resources>
