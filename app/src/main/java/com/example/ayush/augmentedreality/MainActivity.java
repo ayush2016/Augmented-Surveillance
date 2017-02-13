@@ -4,15 +4,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.opencv.android.OpenCVLoader;
+
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
+
+    private static final String TAG = "MainActivity";
+
+    static {
+        if(!OpenCVLoader.initDebug()){
+            Log.d(TAG,"OpenCV not loaded!");
+        } else {
+            Log.d(TAG,"OpenCV loaded!");
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
