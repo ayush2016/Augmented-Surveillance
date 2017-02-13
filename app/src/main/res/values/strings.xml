@@ -24,9 +24,9 @@
     <string name="unidentifiable_activity">Unidentifiable activity: %1$d</string>
     <string name="longitude">LONGITUDE</string>
     <string name="latitude">LATITUDE</string>
-    <string name="magnetometer">MAGNETOMETER</string>
-    <string name="gyroscope">GYROSCOPE</string>
-    <string name="accelerometer">ACCELEROMETER</string>
+    <string name="magnetometer">MAGNETOMETER DATA</string>
+    <string name="gyroscope">GYROSCOPE DATA</string>
+    <string name="accelerometer">ACCELEROMETER DATA</string>
     <string name="master_data">MASTER DATA</string>
     <string name="activity_recognition">Activity Recognition</string>
     <string name="map">MAP</string>
@@ -50,5 +50,5 @@
     <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
     <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
     <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
-    <string name="video_face_detection">VIDEO FACE DETECTION</string>
+    <string name="video_face_detection">REALTIME DETECTION</string>
 </resources>
