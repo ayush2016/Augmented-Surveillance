@@ -92,4 +92,13 @@
         android:onClick="newVideoFaceDetectionActivityOnClick"
         android:text="@string/video_face_detection" />
 
+    <Button
+        android:id="@+id/opencv"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:onClick="newOpenCVActivityOnClick"
+        android:text="@string/opencv" />
+
+
+
 </LinearLayout>

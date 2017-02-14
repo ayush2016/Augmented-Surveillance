@@ -53,7 +53,8 @@
         <activity android:name=".Main9Activity" />
         <activity android:name=".Main10Activity" />
         <activity android:name=".Main11Activity" />
-        <activity android:name=".FaceTrackerActivity"></activity>
+        <activity android:name=".FaceTrackerActivity" />
+        <activity android:name=".OpenCVActivity"></activity>
     </application>
 
 </manifest>
