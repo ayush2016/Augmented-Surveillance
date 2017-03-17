@@ -33,7 +33,7 @@ public class OpenCVActivity extends AppCompatActivity implements CameraBridgeVie
     };
 
     static {
-
+        System.loadLibrary("MyLibs");
     }
 
     JavaCameraView javaCameraView;
@@ -91,6 +91,7 @@ public class OpenCVActivity extends AppCompatActivity implements CameraBridgeVie
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         mRgba = inputFrame.rgba();
+        OpenCVClass.faceDetection(mRgba.getNativeObjAddr());
         return mRgba;
     }
 }

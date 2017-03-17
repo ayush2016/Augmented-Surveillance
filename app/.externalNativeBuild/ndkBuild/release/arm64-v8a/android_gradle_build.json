@@ -1,0 +1,33 @@
+{
+  "buildFiles": [
+    "/home/ayush/Documents/GitKraken/AugmentedReality/app/src/main/jni/Android.mk",
+    "/home/ayush/Documents/GitKraken/AugmentedReality/app/src/main/jni/Application.mk"
+  ],
+  "cleanCommands": [
+    "/home/ayush/Android/Sdk/ndk-bundle/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/home/ayush/Documents/GitKraken/AugmentedReality/app/src/main/jni/Android.mk NDK_APPLICATION_MK\u003d/home/ayush/Documents/GitKraken/AugmentedReality/app/src/main/jni/Application.mk APP_ABI\u003darm64-v8a NDK_ALL_ABIS\u003darm64-v8a NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003d/home/ayush/Documents/GitKraken/AugmentedReality/app/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003d/home/ayush/Documents/GitKraken/AugmentedReality/app/build/intermediates/ndkBuild/release/lib clean"
+  ],
+  "libraries": {
+    "MyLibs-release-arm64-v8a": {
+      "buildCommand": "/home/ayush/Android/Sdk/ndk-bundle/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/home/ayush/Documents/GitKraken/AugmentedReality/app/src/main/jni/Android.mk NDK_APPLICATION_MK\u003d/home/ayush/Documents/GitKraken/AugmentedReality/app/src/main/jni/Application.mk APP_ABI\u003darm64-v8a NDK_ALL_ABIS\u003darm64-v8a NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003d/home/ayush/Documents/GitKraken/AugmentedReality/app/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003d/home/ayush/Documents/GitKraken/AugmentedReality/app/build/intermediates/ndkBuild/release/lib /home/ayush/Documents/GitKraken/AugmentedReality/app/build/intermediates/ndkBuild/release/obj/local/arm64-v8a/libMyLibs.so",
+      "toolchain": "toolchain-arm64-v8a",
+      "abi": "arm64-v8a",
+      "artifactName": "MyLibs",
+      "files": [
+        {
+          "src": "/home/ayush/Documents/GitKraken/AugmentedReality/app/src/main/jni/com_example_ayush_augmentedreality_OpenCVClass.cpp",
+          "flags": "\"-gcc-toolchain\" \"/home/ayush/Android/Sdk/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64\" \"-target\" \"aarch64-none-linux-android\" \"-ffunction-sections\" \"-funwind-tables\" \"-fstack-protector-strong\" \"-fpic\" \"-Wno-invalid-command-line-argument\" \"-Wno-unused-command-line-argument\" \"-no-canonical-prefixes\" \"-g\" \"-fno-exceptions\" \"-fno-rtti\" \"-O2\" \"-DNDEBUG\" \"-I/home/ayush/Documents/OpenCV-android-sdk/sdk/native/jni/include/opencv\" \"-I/home/ayush/Documents/OpenCV-android-sdk/sdk/native/jni/include\" \"-I/home/ayush/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include\" \"-I/home/ayush/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/arm64-v8a/include\" \"-I/home/ayush/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward\" \"-I/home/ayush/Documents/GitKraken/AugmentedReality/app/src/main/jni\" \"-DANDROID\" \"-fPIC\" \"-DANDROID\" \"-fsigned-char\" \"-Wa,--noexecstack\" \"-Wformat\" \"-Werror\u003dformat-security\" \"-frtti\" \"-fexceptions\" \"--sysroot\" \"/home/ayush/Android/Sdk/ndk-bundle/platforms/android-21/arch-arm64\""
+        }
+      ],
+      "output": "/home/ayush/Documents/GitKraken/AugmentedReality/app/build/intermediates/ndkBuild/release/obj/local/arm64-v8a/libMyLibs.so"
+    }
+  },
+  "toolchains": {
+    "toolchain-arm64-v8a": {
+      "cppCompilerExecutable": "/home/ayush/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}
