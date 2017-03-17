@@ -6,4 +6,5 @@ package com.example.ayush.augmentedreality;
 
 public class OpenCVClass {
     public native static void faceDetection(long addrRgba);
+    public native static void humanDetection(long addrRgba);
 }
