@@ -62,12 +62,14 @@ void detectFace(Mat &frame) {
 }
 
 void detectHuman(Mat &frame) {
-    String human_cascade_name = "storage/emulated/0/data/haarcascade_fullbody.xml";
-    CascadeClassifier human_cascade;
-    if (!human_cascade.load(human_cascade_name)) {
-        printf("--(!)Error loading\n");
-        return;
-    };
+    //String human_cascade_name = "storage/emulated/0/data/haarcascade_fullbody.xml";
+    //CascadeClassifier human_cascade;
+    //if (!human_cascade.load(human_cascade_name)) {
+    //    printf("--(!)Error loading\n");
+    //    return;
+    //};
+    HOGDescriptor hog;
+    hog.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
 
     std::vector <Rect> humans;
     Mat frame_gray;
@@ -75,9 +77,11 @@ void detectHuman(Mat &frame) {
     cvtColor(frame, frame_gray, CV_BGR2GRAY);
     equalizeHist(frame_gray, frame_gray);
 
-    //-- Detect humans
-    human_cascade.detectMultiScale(frame_gray, humans, 1.1, 2, 0 | CV_HAAR_SCALE_IMAGE,
-                                   Size(30, 30));
+    //Detect humans
+    //human_cascade.detectMultiScale(frame_gray, humans, 1.1, 2, 0 | CV_HAAR_SCALE_IMAGE,
+    //                               Size(30, 30));
+    hog.detectMultiScale(frame_gray, humans, 0, Size(8, 8), Size(32, 32), 1.05, 2);
+
     for (int i = 0; i < humans.size(); i++) {
         rectangle(frame, Point(humans[i].x, humans[i].y),
                   Point(humans[i].x + humans[i].width, humans[i].y + humans[i].height),
