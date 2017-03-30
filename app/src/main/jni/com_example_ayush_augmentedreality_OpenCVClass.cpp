@@ -57,8 +57,42 @@ void detectFace(Mat &frame) {
             circle(frame, center, radius, Scalar(255, 0, 0), 4, 8, 0);
         }
     }
+}
 
+void nms(const vector <Rect> &srcRects, vector <Rect> &resRects, float thresh) {
+    resRects.clear();
 
+    const size_t size = srcRects.size();
+    if (!size) {
+        return;
+    }
+
+    multimap<int, size_t> idxs;
+    for (size_t i = 0; i < size; ++i) {
+        idxs.insert(pair<int, size_t>(srcRects[i].br().y, i));
+    }
+
+    while (idxs.size() > 0) {
+
+        auto lastElem = --idxs.end();
+        const Rect &rect1 = srcRects[lastElem->second];
+        resRects.push_back(rect1);
+        idxs.erase(lastElem);
+
+        for (auto pos = idxs.begin(); pos != idxs.end();) {
+            const Rect &rect2 = srcRects[pos->second];
+
+            float intArea = (rect1 & rect2).area();
+            float unionArea = rect1.area() + rect2.area() - intArea;
+            float overlap = intArea / unionArea;
+
+            if (overlap > thresh) {
+                idxs.erase(pos);
+            } else {
+                ++pos;
+            }
+        }
+    }
 }
 
 void detectHuman(Mat &frame) {
@@ -73,9 +107,12 @@ void detectHuman(Mat &frame) {
 
     hog.detectMultiScale(frame_gray, humans, 0, Size(8, 8), Size(32, 32), 1.05, 2);
 
-    for (int i = 0; i < humans.size(); i++) {
-        rectangle(frame, Point(humans[i].x, humans[i].y),
-                  Point(humans[i].x + humans[i].width, humans[i].y + humans[i].height),
+    vector <Rect> resRects;
+    nms(humans, resRects, 0.3f);
+
+    for (int i = 0; i < resRects.size(); i++) {
+        rectangle(frame, Point(resRects[i].x, resRects[i].y),
+                  Point(resRects[i].x + resRects[i].width, resRects[i].y + resRects[i].height),
                   Scalar(0, 255, 0));
     }
 }
