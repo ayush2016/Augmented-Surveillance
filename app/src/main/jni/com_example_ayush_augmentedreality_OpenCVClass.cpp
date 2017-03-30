@@ -30,7 +30,7 @@ void detectFace(Mat &frame) {
         return;
     };
 
-    std::vector <Rect> faces;
+    vector <Rect> faces;
     Mat frame_gray;
 
     cvtColor(frame, frame_gray, CV_BGR2GRAY);
@@ -45,7 +45,7 @@ void detectFace(Mat &frame) {
                 Scalar(255, 0, 255), 4, 8, 0);
 
         Mat faceROI = frame_gray(faces[i]);
-        std::vector <Rect> eyes;
+        vector <Rect> eyes;
 
         //-- In each face, detect eyes
         eyes_cascade.detectMultiScale(faceROI, eyes, 1.1, 2, 0 | CV_HAAR_SCALE_IMAGE, Size(30, 30));
@@ -65,7 +65,7 @@ void detectHuman(Mat &frame) {
     HOGDescriptor hog;
     hog.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
 
-    std::vector <Rect> humans;
+    vector <Rect> humans;
     Mat frame_gray;
 
     cvtColor(frame, frame_gray, CV_BGR2GRAY);
