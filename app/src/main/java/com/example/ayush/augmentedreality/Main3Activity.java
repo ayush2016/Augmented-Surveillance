@@ -133,7 +133,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         latLng = new LatLng(location.getLatitude(), location.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
-        markerOptions.title("Current Position");
+        markerOptions.title("Current Pos" + " Lat:" + mCurrentLocation.getLatitude() + " Long:" + mCurrentLocation.getLongitude());
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.army));
         currLocationMarker = mGoogleMap.addMarker(markerOptions);
 

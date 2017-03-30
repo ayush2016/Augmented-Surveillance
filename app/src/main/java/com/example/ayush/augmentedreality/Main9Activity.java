@@ -45,8 +45,8 @@ public class Main9Activity extends AppCompatActivity implements GoogleApiClient.
     public void onConnected(Bundle bundle) {
         LocationRequest mLocationRequest = LocationRequest.create();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(20000);
-        mLocationRequest.setFastestInterval(15000);
+        mLocationRequest.setInterval(10000);
+        mLocationRequest.setFastestInterval(7500);
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
     }
 
