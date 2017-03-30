@@ -4,6 +4,7 @@
 /* Header for class com_example_ayush_augmentedreality_OpenCVClass */
 
 using namespace cv;
+using namespace std;
 
 #ifndef _Included_com_example_ayush_augmentedreality_OpenCVClass
 #define _Included_com_example_ayush_augmentedreality_OpenCVClass
