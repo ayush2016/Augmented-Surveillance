@@ -73,7 +73,6 @@ void nms(const vector <Rect> &srcRects, vector <Rect> &resRects, float thresh) {
     }
 
     while (idxs.size() > 0) {
-
         auto lastElem = --idxs.end();
         const Rect &rect1 = srcRects[lastElem->second];
         resRects.push_back(rect1);
@@ -108,7 +107,7 @@ void detectHuman(Mat &frame) {
     hog.detectMultiScale(frame_gray, humans, 0, Size(8, 8), Size(32, 32), 1.05, 2);
 
     vector <Rect> resRects;
-    nms(humans, resRects, 0.3f);
+    nms(humans, resRects, 0.65f);
 
     for (int i = 0; i < resRects.size(); i++) {
         rectangle(frame, Point(resRects[i].x, resRects[i].y),
