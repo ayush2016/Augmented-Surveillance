@@ -124,7 +124,7 @@ void detectHuman(Mat &frame) {
                   Point(resRects[i].x + resRects[i].width, resRects[i].y + resRects[i].height),
                   Scalar(0, 255, 0));
 
-        distance = (humanDistance(known_height, focal_length, resRects[i].height)) / 1000;
+        distance = (humanDistance(known_height, focal_length, resRects[i].height)) / 100;
 
         string dist_text = static_cast<ostringstream *>(&(ostringstream() << distance))->str();
         dist_text = dist_text.substr(0, 5);
