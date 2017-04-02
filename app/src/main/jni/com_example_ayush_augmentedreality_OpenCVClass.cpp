@@ -122,7 +122,7 @@ void detectHuman(Mat &frame) {
     for (int i = 0; i < resRects.size(); i++) {
         rectangle(frame, Point(resRects[i].x, resRects[i].y),
                   Point(resRects[i].x + resRects[i].width, resRects[i].y + resRects[i].height),
-                  Scalar(0, 255, 0));
+                  CV_RGB((125 - i * 100) % 255, (i * 100) % 255, (255 - i * 100) % 255));
 
         distance = (humanDistance(known_height, focal_length, resRects[i].height)) / 100;
 
