@@ -15,6 +15,13 @@ JNIEXPORT void JNICALL Java_com_example_ayush_augmentedreality_OpenCVClass_human
 
 }
 
+double known_height = 1750;
+double focal_length = 35;
+
+double humanDistance(double known_height, double focal_length, double height) {
+    return ((known_height * focal_length) / height);
+}
+
 void detectFace(Mat &frame) {
     String face_cascade_name = "storage/emulated/0/data/haarcascade_frontalface_alt.xml";
     String eyes_cascade_name = "storage/emulated/0/data/haarcascade_eye_tree_eyeglasses.xml";
@@ -109,9 +116,22 @@ void detectHuman(Mat &frame) {
     vector <Rect> resRects;
     nms(humans, resRects, 0.65f);
 
+    double distance;
+    char str[500];
+
     for (int i = 0; i < resRects.size(); i++) {
         rectangle(frame, Point(resRects[i].x, resRects[i].y),
                   Point(resRects[i].x + resRects[i].width, resRects[i].y + resRects[i].height),
                   Scalar(0, 255, 0));
+
+        distance = (humanDistance(known_height, focal_length, resRects[i].height)) / 1000;
+
+        string dist_text = static_cast<ostringstream *>(&(ostringstream() << distance))->str();
+        dist_text = dist_text.substr(0, 5);
+
+        //320,240
+        putText(frame, "Distance: " + dist_text + "m", Point(320 - 150, 240 - i * 50 - 20),
+                CV_FONT_NORMAL, 0.5,
+                CV_RGB((125 - i * 100) % 255, (i * 100) % 255, (255 - i * 100) % 255), 1, 1);
     }
 }
