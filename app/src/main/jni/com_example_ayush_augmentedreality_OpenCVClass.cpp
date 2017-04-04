@@ -15,11 +15,12 @@ JNIEXPORT void JNICALL Java_com_example_ayush_augmentedreality_OpenCVClass_human
 
 }
 
-double known_height = 1750;
-double focal_length = 35;
+double known_height = 1750.0;
+double focal_length = 3.0;
+double calibration_factor = 0.1;
 
 double humanDistance(double known_height, double focal_length, double height) {
-    return ((known_height * focal_length) / height);
+    return ((known_height * focal_length * calibration_factor) / height);
 }
 
 void detectFace(Mat &frame) {
@@ -43,7 +44,6 @@ void detectFace(Mat &frame) {
     cvtColor(frame, frame_gray, CV_BGR2GRAY);
     equalizeHist(frame_gray, frame_gray);
 
-    //-- Detect faces
     face_cascade.detectMultiScale(frame_gray, faces, 1.1, 2, 0 | CV_HAAR_SCALE_IMAGE, Size(30, 30));
 
     for (size_t i = 0; i < faces.size(); i++) {
@@ -54,7 +54,6 @@ void detectFace(Mat &frame) {
         Mat faceROI = frame_gray(faces[i]);
         vector <Rect> eyes;
 
-        //-- In each face, detect eyes
         eyes_cascade.detectMultiScale(faceROI, eyes, 1.1, 2, 0 | CV_HAAR_SCALE_IMAGE, Size(30, 30));
 
         for (size_t j = 0; j < eyes.size(); j++) {
@@ -124,7 +123,7 @@ void detectHuman(Mat &frame) {
                   Point(resRects[i].x + resRects[i].width, resRects[i].y + resRects[i].height),
                   CV_RGB((125 - i * 100) % 255, (i * 100) % 255, (255 - i * 100) % 255));
 
-        distance = (humanDistance(known_height, focal_length, resRects[i].height)) / 100;
+        distance = (humanDistance(known_height, focal_length, resRects[i].height));
 
         string dist_text = static_cast<ostringstream *>(&(ostringstream() << distance))->str();
         dist_text = dist_text.substr(0, 5);
