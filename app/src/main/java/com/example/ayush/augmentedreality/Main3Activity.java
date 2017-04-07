@@ -216,8 +216,8 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Map data = (Map) dataSnapshot.getValue();
                 Map mCoordinate = (HashMap) data.get("location");
-                latitude1 = (double) (mCoordinate.get("latitude"));
-                longitude1 = (double) (mCoordinate.get("longitude"));
+                Main3Activity.this.latitude1 = (double) (mCoordinate.get("latitude"));
+                Main3Activity.this.longitude1 = (double) (mCoordinate.get("longitude"));
                 Log.d("UserId1", "Lat:" + String.valueOf(latitude1) + " " + "Long:" + String.valueOf(longitude1));
             }
 
@@ -248,8 +248,8 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Map data = (Map) dataSnapshot.getValue();
                 Map mCoordinate = (HashMap) data.get("location");
-                latitude2 = (double) (mCoordinate.get("latitude"));
-                longitude2 = (double) (mCoordinate.get("longitude"));
+                Main3Activity.this.latitude2 = (double) (mCoordinate.get("latitude"));
+                Main3Activity.this.longitude2 = (double) (mCoordinate.get("longitude"));
                 Log.d("UserId2", "Lat:" + String.valueOf(latitude2) + " " + "Long:" + String.valueOf(longitude2));
             }
 
@@ -281,8 +281,8 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Map data = (Map) dataSnapshot.getValue();
                 Map mCoordinate = (HashMap) data.get("location");
-                latitude3 = (double) (mCoordinate.get("latitude"));
-                longitude3 = (double) (mCoordinate.get("longitude"));
+                Main3Activity.this.latitude3 = (double) (mCoordinate.get("latitude"));
+                Main3Activity.this.longitude3 = (double) (mCoordinate.get("longitude"));
                 Log.d("UserId3", "Lat:" + String.valueOf(latitude3) + " " + "Long:" + String.valueOf(longitude3));
             }
 
