@@ -4,6 +4,7 @@ import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -48,6 +49,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
     GoogleMap mGoogleMap;
     Marker currLocationMarker;
     private String mUserId;
+    double latitude1, longitude1, latitude2, longitude2, latitude3, longitude3;
     private DatabaseReference myFirebaseRef = FirebaseDatabase.getInstance().getReference();
     List<Marker> markerList = new ArrayList<>();
 
@@ -64,6 +66,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         assert mFirebaseUser != null;
         mUserId = mFirebaseUser.getUid();
 
+        geoDistance();
     }
 
     @Override
@@ -166,13 +169,13 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
                 double latitude = (double) (mCoordinate.get("latitude"));
                 double longitude = (double) (mCoordinate.get("longitude"));
 
-                LatLng mLatlng = new LatLng(latitude, longitude);
+                LatLng mLatLng = new LatLng(latitude, longitude);
 
-                builder.include(mLatlng);
+                builder.include(mLatLng);
                 bounds = builder.build();
 
                 MarkerOptions mMarkerOption = new MarkerOptions()
-                        .position(mLatlng)
+                        .position(mLatLng)
                         .title(timestamp)
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.measle_blue));
                 Marker mMarker = mGoogleMap.addMarker(mMarkerOption);
@@ -201,6 +204,133 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         });
     }
 
+    private void geoDistance() {
+        String UserId1 = "Rvev8SzktpWMN4COLHS6yWQOnxQ2"; //ayush.saarathi@gmail.com
+        String UserId2 = "V5GaSfckMkXXjra3Hq3BqXgdzt63"; //iitg.ayush@gmail.com
+        String UserId3 = "hrm3XLx0FaS9NU2QnmLwfNxa5Lk2"; //ayushvijay.iitg@gmail.com
+
+        Query queryRef1 = myFirebaseRef.child("users").child(UserId1).orderByChild("timestamp").limitToLast(1);
+        queryRef1.addChildEventListener(new ChildEventListener() {
+
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Map data = (Map) dataSnapshot.getValue();
+                Map mCoordinate = (HashMap) data.get("location");
+                latitude1 = (double) (mCoordinate.get("latitude"));
+                longitude1 = (double) (mCoordinate.get("longitude"));
+                Log.d("UserId1", "Lat:" + String.valueOf(latitude1) + " " + "Long:" + String.valueOf(longitude1));
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        Query queryRef2 = myFirebaseRef.child("users").child(UserId2).orderByChild("timestamp").limitToLast(1);
+        queryRef2.addChildEventListener(new ChildEventListener() {
+
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Map data = (Map) dataSnapshot.getValue();
+                Map mCoordinate = (HashMap) data.get("location");
+                latitude2 = (double) (mCoordinate.get("latitude"));
+                longitude2 = (double) (mCoordinate.get("longitude"));
+                Log.d("UserId2", "Lat:" + String.valueOf(latitude2) + " " + "Long:" + String.valueOf(longitude2));
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        Query queryRef3 = myFirebaseRef.child("users").child(UserId3).orderByChild("timestamp").limitToLast(1);
+        queryRef3.addChildEventListener(new ChildEventListener() {
+
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Map data = (Map) dataSnapshot.getValue();
+                Map mCoordinate = (HashMap) data.get("location");
+                latitude3 = (double) (mCoordinate.get("latitude"));
+                longitude3 = (double) (mCoordinate.get("longitude"));
+                Log.d("UserId3", "Lat:" + String.valueOf(latitude3) + " " + "Long:" + String.valueOf(longitude3));
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        Log.d("check", String.valueOf(latitude1));
+
+        double distance12 = haversineDistance(latitude1, longitude1, latitude2, longitude2);
+        double distance23 = haversineDistance(latitude2, longitude2, latitude3, longitude3);
+        double distance31 = haversineDistance(latitude3, longitude3, latitude1, longitude1);
+        Log.d("distance12", String.valueOf(distance12));
+        Log.d("distance23", String.valueOf(distance23));
+        Log.d("distance31", String.valueOf(distance31));
+    }
+
+    private double haversineDistance(double lat1, double lon1, double lat2, double lon2) {
+        final int R = 6371000; // Radius of the earth
+        double latDistance = toRad(lat2 - lat1);
+        double lonDistance = toRad(lon2 - lon1);
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2) +
+                Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+                        Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return R * c; //distance in metres
+    }
+
+    private static Double toRad(Double value) {
+        return value * Math.PI / 180;
+    }
 
     @Override
     protected void onStop() {
