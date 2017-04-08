@@ -49,7 +49,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
     GoogleMap mGoogleMap;
     Marker currLocationMarker;
     private String mUserId;
-    double latitude1, longitude1, latitude2, longitude2, latitude3, longitude3;
+    static double latitude1, longitude1, latitude2, longitude2, latitude3, longitude3;
     private DatabaseReference myFirebaseRef = FirebaseDatabase.getInstance().getReference();
     List<Marker> markerList = new ArrayList<>();
 
@@ -216,9 +216,9 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Map data = (Map) dataSnapshot.getValue();
                 Map mCoordinate = (HashMap) data.get("location");
-                Main3Activity.this.latitude1 = (double) (mCoordinate.get("latitude"));
-                Main3Activity.this.longitude1 = (double) (mCoordinate.get("longitude"));
-                Log.d("UserId1", "Lat:" + String.valueOf(latitude1) + " " + "Long:" + String.valueOf(longitude1));
+                Main3Activity.latitude1 = (double) (mCoordinate.get("latitude"));
+                Main3Activity.longitude1 = (double) (mCoordinate.get("longitude"));
+                Log.d("UserId1", "Lat:" + String.valueOf(Main3Activity.latitude1) + " " + "Long:" + String.valueOf(Main3Activity.longitude1));
             }
 
             @Override
@@ -248,9 +248,9 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Map data = (Map) dataSnapshot.getValue();
                 Map mCoordinate = (HashMap) data.get("location");
-                Main3Activity.this.latitude2 = (double) (mCoordinate.get("latitude"));
-                Main3Activity.this.longitude2 = (double) (mCoordinate.get("longitude"));
-                Log.d("UserId2", "Lat:" + String.valueOf(latitude2) + " " + "Long:" + String.valueOf(longitude2));
+                Main3Activity.latitude2 = (double) (mCoordinate.get("latitude"));
+                Main3Activity.longitude2 = (double) (mCoordinate.get("longitude"));
+                Log.d("UserId2", "Lat:" + String.valueOf(Main3Activity.latitude2) + " " + "Long:" + String.valueOf(Main3Activity.longitude2));
             }
 
             @Override
@@ -281,9 +281,9 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Map data = (Map) dataSnapshot.getValue();
                 Map mCoordinate = (HashMap) data.get("location");
-                Main3Activity.this.latitude3 = (double) (mCoordinate.get("latitude"));
-                Main3Activity.this.longitude3 = (double) (mCoordinate.get("longitude"));
-                Log.d("UserId3", "Lat:" + String.valueOf(latitude3) + " " + "Long:" + String.valueOf(longitude3));
+                Main3Activity.latitude3 = (double) (mCoordinate.get("latitude"));
+                Main3Activity.longitude3 = (double) (mCoordinate.get("longitude"));
+                Log.d("UserId3", "Lat:" + String.valueOf(Main3Activity.latitude3) + " " + "Long:" + String.valueOf(Main3Activity.longitude3));
             }
 
             @Override
@@ -307,17 +307,17 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
             }
         });
 
-        Log.d("check", String.valueOf(latitude1));
+        Log.d("check", String.valueOf(Main3Activity.latitude1));
 
-        double distance12 = haversineDistance(latitude1, longitude1, latitude2, longitude2);
-        double distance23 = haversineDistance(latitude2, longitude2, latitude3, longitude3);
-        double distance31 = haversineDistance(latitude3, longitude3, latitude1, longitude1);
+        double distance12 = haversineDistance(Main3Activity.latitude1, Main3Activity.longitude1, Main3Activity.latitude2, Main3Activity.longitude2);
+        double distance23 = haversineDistance(Main3Activity.latitude2, Main3Activity.longitude2, Main3Activity.latitude3, Main3Activity.longitude3);
+        double distance31 = haversineDistance(Main3Activity.latitude3, Main3Activity.longitude3, Main3Activity.latitude1, Main3Activity.longitude1);
         Log.d("distance12", String.valueOf(distance12));
         Log.d("distance23", String.valueOf(distance23));
         Log.d("distance31", String.valueOf(distance31));
     }
 
-    private double haversineDistance(double lat1, double lon1, double lat2, double lon2) {
+    private static double haversineDistance(double lat1, double lon1, double lat2, double lon2) {
         final int R = 6371000; // Radius of the earth
         double latDistance = toRad(lat2 - lat1);
         double lonDistance = toRad(lon2 - lon1);
