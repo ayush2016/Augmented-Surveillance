@@ -47,7 +47,8 @@ public class OpenCVActivity extends AppCompatActivity implements CameraBridgeVie
         javaCameraView = (JavaCameraView) findViewById(R.id.java_camera_view);
         javaCameraView.setVisibility(SurfaceView.VISIBLE);
         javaCameraView.setCvCameraViewListener(this);
-        javaCameraView.setMaxFrameSize(320,240);
+        //javaCameraView.setMaxFrameSize(320,240);
+        javaCameraView.setMaxFrameSize(640,480);
     }
 
     @Override

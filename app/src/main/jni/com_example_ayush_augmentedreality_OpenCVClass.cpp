@@ -128,8 +128,13 @@ void detectHuman(Mat &frame) {
         string dist_text = static_cast<ostringstream *>(&(ostringstream() << distance))->str();
         dist_text = dist_text.substr(0, 5);
 
+        /*
         //320,240
         putText(frame, "Distance: " + dist_text + "m", Point(320 - 150, 240 - i * 50 - 20),
+                CV_FONT_NORMAL, 0.5,
+                CV_RGB((125 - i * 100) % 255, (i * 100) % 255, (255 - i * 100) % 255), 1, 1); */
+        //640,480
+        putText(frame, "Distance: " + dist_text + "m", Point(640 - 150, 480 - i * 50 - 20),
                 CV_FONT_NORMAL, 0.5,
                 CV_RGB((125 - i * 100) % 255, (i * 100) % 255, (255 - i * 100) % 255), 1, 1);
     }
