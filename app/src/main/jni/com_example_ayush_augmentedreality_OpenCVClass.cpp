@@ -15,12 +15,16 @@ JNIEXPORT void JNICALL Java_com_example_ayush_augmentedreality_OpenCVClass_human
 
 }
 
-double known_height = 1750.0;
-double focal_length = 3.0;
-double calibration_factor = 0.1;
+double real_height = 1750.0; //mm
+double focal_length = 3.0; //mm
+double image_height = 480.0; //Image Width: 640, Image Height: 480
+double sensor_height = 5.8; //mm
 
-double humanDistance(double known_height, double focal_length, double height) {
-    return ((known_height * focal_length * calibration_factor) / height);
+double
+humanDistance(double focal_length, double real_height, double image_height, double human_height,
+              double sensor_height) {
+    return ((focal_length * real_height * image_height) /
+            (human_height * sensor_height * 1000.0)); //m
 }
 
 void detectFace(Mat &frame) {
@@ -115,17 +119,21 @@ void detectHuman(Mat &frame) {
     vector <Rect> resRects;
     nms(humans, resRects, 0.65f);
 
-    double distance;
+    double distance_to_human;
     char str[500];
 
     for (int i = 0; i < resRects.size(); i++) {
         rectangle(frame, Point(resRects[i].x, resRects[i].y),
-                  Point(resRects[i].x + resRects[i].width, resRects[i].y + resRects[i].height),
+                  Point(resRects[i].x + resRects[i].width, resRects[i].y + resRects[i].height -
+                                                           25), //(-25) Reason: Non-Maximum Suppression
                   CV_RGB((125 - i * 100) % 255, (i * 100) % 255, (255 - i * 100) % 255));
 
-        distance = (humanDistance(known_height, focal_length, resRects[i].height));
+        double human_height = resRects[i].height - 25;
+        distance_to_human = humanDistance(focal_length, real_height, image_height, human_height,
+                                          sensor_height);
 
-        string dist_text = static_cast<ostringstream *>(&(ostringstream() << distance))->str();
+        string dist_text = static_cast<ostringstream *>(&(ostringstream()
+                << distance_to_human))->str();
         dist_text = dist_text.substr(0, 5);
 
         /*
@@ -133,6 +141,7 @@ void detectHuman(Mat &frame) {
         putText(frame, "Distance: " + dist_text + "m", Point(320 - 150, 240 - i * 50 - 20),
                 CV_FONT_NORMAL, 0.5,
                 CV_RGB((125 - i * 100) % 255, (i * 100) % 255, (255 - i * 100) % 255), 1, 1); */
+
         //640,480
         putText(frame, "Distance: " + dist_text + "m", Point(640 - 150, 480 - i * 50 - 20),
                 CV_FONT_NORMAL, 0.5,
