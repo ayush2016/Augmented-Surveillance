@@ -309,12 +309,20 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
 
         Log.d("check", String.valueOf(Main3Activity.latitude1));
 
-        double distance12 = haversineDistance(Main3Activity.latitude1, Main3Activity.longitude1, Main3Activity.latitude2, Main3Activity.longitude2);
-        double distance23 = haversineDistance(Main3Activity.latitude2, Main3Activity.longitude2, Main3Activity.latitude3, Main3Activity.longitude3);
-        double distance31 = haversineDistance(Main3Activity.latitude3, Main3Activity.longitude3, Main3Activity.latitude1, Main3Activity.longitude1);
-        Log.d("distance12", String.valueOf(distance12));
-        Log.d("distance23", String.valueOf(distance23));
-        Log.d("distance31", String.valueOf(distance31));
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        double distance12 = haversineDistance(Main3Activity.latitude1, Main3Activity.longitude1, Main3Activity.latitude2, Main3Activity.longitude2);
+                        double distance23 = haversineDistance(Main3Activity.latitude2, Main3Activity.longitude2, Main3Activity.latitude3, Main3Activity.longitude3);
+                        double distance31 = haversineDistance(Main3Activity.latitude3, Main3Activity.longitude3, Main3Activity.latitude1, Main3Activity.longitude1);
+                        Log.d("distance12", String.valueOf(distance12));
+                        Log.d("distance23", String.valueOf(distance23));
+                        Log.d("distance31", String.valueOf(distance31));
+                    }
+                },
+                10000
+        );
     }
 
     private static double haversineDistance(double lat1, double lon1, double lat2, double lon2) {
