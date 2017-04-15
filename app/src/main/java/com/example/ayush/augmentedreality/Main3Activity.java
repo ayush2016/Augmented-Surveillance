@@ -50,6 +50,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
     Marker currLocationMarker;
     private String mUserId;
     static double latitude1, longitude1, latitude2, longitude2, latitude3, longitude3;
+    static double distance12, distance23, distance31;
     private DatabaseReference myFirebaseRef = FirebaseDatabase.getInstance().getReference();
     List<Marker> markerList = new ArrayList<>();
 
@@ -313,12 +314,12 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
-                        double distance12 = haversineDistance(Main3Activity.latitude1, Main3Activity.longitude1, Main3Activity.latitude2, Main3Activity.longitude2);
-                        double distance23 = haversineDistance(Main3Activity.latitude2, Main3Activity.longitude2, Main3Activity.latitude3, Main3Activity.longitude3);
-                        double distance31 = haversineDistance(Main3Activity.latitude3, Main3Activity.longitude3, Main3Activity.latitude1, Main3Activity.longitude1);
-                        Log.d("distance12", String.valueOf(distance12));
-                        Log.d("distance23", String.valueOf(distance23));
-                        Log.d("distance31", String.valueOf(distance31));
+                        Main3Activity.distance12 = haversineDistance(Main3Activity.latitude1, Main3Activity.longitude1, Main3Activity.latitude2, Main3Activity.longitude2);
+                        Main3Activity.distance23 = haversineDistance(Main3Activity.latitude2, Main3Activity.longitude2, Main3Activity.latitude3, Main3Activity.longitude3);
+                        Main3Activity.distance31 = haversineDistance(Main3Activity.latitude3, Main3Activity.longitude3, Main3Activity.latitude1, Main3Activity.longitude1);
+                        Log.d("distance12", String.valueOf(Main3Activity.distance12));
+                        Log.d("distance23", String.valueOf(Main3Activity.distance23));
+                        Log.d("distance31", String.valueOf(Main3Activity.distance31));
                     }
                 },
                 10000

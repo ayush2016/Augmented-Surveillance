@@ -87,7 +87,6 @@ public class OpenCVActivity extends AppCompatActivity implements CameraBridgeVie
     @Override
     public void onCameraViewStopped() {
         mRgba.release();
-
     }
 
     @Override
