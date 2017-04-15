@@ -341,13 +341,14 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         return value * Math.PI / 180;
     }
 
+    /*
     @Override
     protected void onStop() {
         super.onStop();
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
-    }
+    } */
 
     @Override
     public void onStart() {

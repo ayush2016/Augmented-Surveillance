@@ -8,10 +8,13 @@ JNIEXPORT void JNICALL Java_com_example_ayush_augmentedreality_OpenCVClass_faceD
 }
 
 JNIEXPORT void JNICALL Java_com_example_ayush_augmentedreality_OpenCVClass_humanDetection
-        (JNIEnv *, jclass, jlong addrRgba) {
+        (JNIEnv *, jclass, jlong addrRgba, jdouble d12, jdouble d23, jdouble d31) {
 
     Mat &frame = *(Mat *) addrRgba;
-    detectHuman(frame);
+    double distance12 = d12;
+    double distance23 = d23;
+    double distance31 = d31;
+    detectHuman(frame, distance12, distance23, distance31);
 
 }
 
@@ -104,7 +107,7 @@ void nms(const vector <Rect> &srcRects, vector <Rect> &resRects, float thresh) {
     }
 }
 
-void detectHuman(Mat &frame) {
+void detectHuman(Mat &frame, double distance12, double distance23, double distance31) {
     HOGDescriptor hog;
     hog.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
 
@@ -132,8 +135,16 @@ void detectHuman(Mat &frame) {
         distance_to_human = humanDistance(focal_length, real_height, image_height, human_height,
                                           sensor_height);
 
+        __android_log_print(ANDROID_LOG_INFO, "Distances from Java Class", "distance12 = %f",
+                            distance12);
+        __android_log_print(ANDROID_LOG_INFO, "Distances from Java Class", "distance23 = %f",
+                            distance23);
+        __android_log_print(ANDROID_LOG_INFO, "Distances from Java Class", "distance31 = %f",
+                            distance31);
+
         string dist_text = static_cast<ostringstream *>(&(ostringstream()
                 << distance_to_human))->str();
+
         dist_text = dist_text.substr(0, 5);
 
         /*

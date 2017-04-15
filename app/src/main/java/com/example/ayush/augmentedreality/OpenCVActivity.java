@@ -48,7 +48,7 @@ public class OpenCVActivity extends AppCompatActivity implements CameraBridgeVie
         javaCameraView.setVisibility(SurfaceView.VISIBLE);
         javaCameraView.setCvCameraViewListener(this);
         //javaCameraView.setMaxFrameSize(320,240);
-        javaCameraView.setMaxFrameSize(640,480);
+        javaCameraView.setMaxFrameSize(640, 480);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class OpenCVActivity extends AppCompatActivity implements CameraBridgeVie
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         mRgba = inputFrame.rgba();
         //OpenCVClass.faceDetection(mRgba.getNativeObjAddr());
-        OpenCVClass.humanDetection(mRgba.getNativeObjAddr());
+        OpenCVClass.humanDetection(mRgba.getNativeObjAddr(), Main3Activity.distance12, Main3Activity.distance23, Main3Activity.distance31);
         return mRgba;
     }
 }
