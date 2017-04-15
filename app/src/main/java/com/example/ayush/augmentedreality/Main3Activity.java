@@ -51,6 +51,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
     private String mUserId;
     static double latitude1, longitude1, latitude2, longitude2, latitude3, longitude3;
     static double distance12, distance23, distance31;
+    static int mUserIdNo;
     private DatabaseReference myFirebaseRef = FirebaseDatabase.getInstance().getReference();
     List<Marker> markerList = new ArrayList<>();
 
@@ -66,7 +67,15 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
         assert mFirebaseUser != null;
         mUserId = mFirebaseUser.getUid();
-
+        if (mUserId.equals("Rvev8SzktpWMN4COLHS6yWQOnxQ2")) {
+            mUserIdNo = 1;
+        }
+        if (mUserId.equals("V5GaSfckMkXXjra3Hq3BqXgdzt63")) {
+            mUserIdNo = 2;
+        }
+        if (mUserId.equals("hrm3XLx0FaS9NU2QnmLwfNxa5Lk2")) {
+            mUserIdNo = 3;
+        }
         geoDistance();
     }
 

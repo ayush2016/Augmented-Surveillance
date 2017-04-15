@@ -18,13 +18,13 @@ extern "C" {
  * Signature: (J)V
  */
 void detectFace(Mat &frame);
-void detectHuman(Mat &frame, double distance12, double distance23, double distance31);
+void detectHuman(Mat &frame, double distance12, double distance23, double distance31, int mUserIdNo);
 
 JNIEXPORT void JNICALL Java_com_example_ayush_augmentedreality_OpenCVClass_faceDetection
         (JNIEnv *, jclass, jlong);
 
 JNIEXPORT void JNICALL Java_com_example_ayush_augmentedreality_OpenCVClass_humanDetection
-        (JNIEnv *, jclass, jlong, jdouble, jdouble, jdouble);
+        (JNIEnv *, jclass, jlong, jdouble, jdouble, jdouble, jint);
 
 #ifdef __cplusplus
 }
