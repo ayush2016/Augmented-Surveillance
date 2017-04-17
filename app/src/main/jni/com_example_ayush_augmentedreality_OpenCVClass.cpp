@@ -137,6 +137,44 @@ detectHuman(Mat &frame, double distance12, double distance23, double distance31,
         distance_to_human = humanDistance(focal_length, real_height, image_height, human_height,
                                           sensor_height);
 
+        int friendId = 0; //0: foe
+
+        if (mUserIdNo == 1) {
+            if (fabs(distance12 - distance_to_human) > fabs(distance31 - distance_to_human)) {
+                if (fabs(distance31 - distance_to_human) < 1.0) {
+                    friendId = 3;
+                };
+            } else {
+                if (fabs(distance12 - distance_to_human) < 1.0) {
+                    friendId = 2;
+                }
+            }
+        }
+
+        if (mUserIdNo == 2) {
+            if (fabs(distance12 - distance_to_human) > fabs(distance23 - distance_to_human)) {
+                if (fabs(distance12 - distance_to_human) < 1.0) {
+                    friendId = 1;
+                };
+            } else {
+                if (fabs(distance23 - distance_to_human) < 1.0) {
+                    friendId = 3;
+                }
+            }
+        }
+
+        if (mUserIdNo == 3) {
+            if (fabs(distance31 - distance_to_human) > fabs(distance23 - distance_to_human)) {
+                if (fabs(distance31 - distance_to_human) < 1.0) {
+                    friendId = 1;
+                };
+            } else {
+                if (fabs(distance23 - distance_to_human) < 1.0) {
+                    friendId = 2;
+                }
+            }
+        }
+
         __android_log_print(ANDROID_LOG_INFO, "Distances from Java Class", "distance12 = %f",
                             distance12);
         __android_log_print(ANDROID_LOG_INFO, "Distances from Java Class", "distance23 = %f",
@@ -151,6 +189,21 @@ detectHuman(Mat &frame, double distance12, double distance23, double distance31,
 
         dist_text = dist_text.substr(0, 5);
 
+        string Id_text;
+
+        if (friendId == 0) {
+            Id_text = "Enemy ";
+        }
+        if (friendId == 1) {
+            Id_text = "Friend: ayush.saarathi ";
+        }
+        if (friendId == 2) {
+            Id_text = "Friend: iitg.ayush ";
+        }
+        if (friendId == 3) {
+            Id_text = "Friend: ayushvijay.iitg ";
+        }
+
         /*
         //320,240
         putText(frame, "Distance: " + dist_text + "m", Point(320 - 150, 240 - i * 50 - 20),
@@ -158,8 +211,9 @@ detectHuman(Mat &frame, double distance12, double distance23, double distance31,
                 CV_RGB((125 - i * 100) % 255, (i * 100) % 255, (255 - i * 100) % 255), 1, 1); */
 
         //640,480
-        putText(frame, "Distance: " + dist_text + "m", Point(640 - 150, 480 - i * 50 - 20),
+        putText(frame, "Distance: " + dist_text + "m " + Id_text, Point(10, 480 - i * 50 - 20),
                 CV_FONT_NORMAL, 0.5,
                 CV_RGB((125 - i * 100) % 255, (i * 100) % 255, (255 - i * 100) % 255), 1, 1);
     }
 }
+

@@ -152,7 +152,9 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
 
         Toast.makeText(this, "Location Changed", Toast.LENGTH_SHORT).show();
         saveToFirebase();
-        drawLocations();
+        drawLocations("Rvev8SzktpWMN4COLHS6yWQOnxQ2");
+        drawLocations("V5GaSfckMkXXjra3Hq3BqXgdzt63");
+        drawLocations("hrm3XLx0FaS9NU2QnmLwfNxa5Lk2");
     }
 
     private void saveToFirebase() {
@@ -165,8 +167,8 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         myFirebaseRef.child("users").child(mUserId).push().setValue(mLocations);
     }
 
-    private void drawLocations() {
-        Query queryRef = myFirebaseRef.child("users").child(mUserId).orderByChild("timestamp");
+    private void drawLocations(final String userId) {
+        Query queryRef = myFirebaseRef.child("users").child(userId).orderByChild("timestamp");
         queryRef.addChildEventListener(new ChildEventListener() {
             LatLngBounds bounds;
             LatLngBounds.Builder builder = new LatLngBounds.Builder();
@@ -184,13 +186,32 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
                 builder.include(mLatLng);
                 bounds = builder.build();
 
-                MarkerOptions mMarkerOption = new MarkerOptions()
-                        .position(mLatLng)
-                        .title(timestamp)
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.measle_blue));
-                Marker mMarker = mGoogleMap.addMarker(mMarkerOption);
-                markerList.add(mMarker);
+                if (userId.equals("Rvev8SzktpWMN4COLHS6yWQOnxQ2")) {
+                    MarkerOptions mMarkerOption = new MarkerOptions()
+                            .position(mLatLng)
+                            .title(timestamp + " ayush.saarathi")
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.measle_blue));
+                    Marker mMarker = mGoogleMap.addMarker(mMarkerOption);
+                    markerList.add(mMarker);
+                }
 
+                if (userId.equals("V5GaSfckMkXXjra3Hq3BqXgdzt63")) {
+                    MarkerOptions mMarkerOption = new MarkerOptions()
+                            .position(mLatLng)
+                            .title(timestamp + " iitg.ayush")
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.green));
+                    Marker mMarker = mGoogleMap.addMarker(mMarkerOption);
+                    markerList.add(mMarker);
+                }
+
+                if (userId.equals("hrm3XLx0FaS9NU2QnmLwfNxa5Lk2")) {
+                    MarkerOptions mMarkerOption = new MarkerOptions()
+                            .position(mLatLng)
+                            .title(timestamp + " ayushvijay.iitg")
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.grey));
+                    Marker mMarker = mGoogleMap.addMarker(mMarkerOption);
+                    markerList.add(mMarker);
+                }
             }
 
             @Override

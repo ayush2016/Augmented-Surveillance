@@ -2,6 +2,7 @@
 #include <jni.h>
 #include "opencv2/opencv.hpp"
 #include <android/log.h>
+#include <math.h>
 /* Header for class com_example_ayush_augmentedreality_OpenCVClass */
 
 using namespace cv;
