@@ -19,15 +19,16 @@ JNIEXPORT void JNICALL Java_com_example_ayush_augmentedreality_OpenCVClass_human
 
 }
 
-double real_height = 1750.0; //mm
-double focal_length = 3.0; //mm
+double real_height = 1800.0; //mm
+double focal_length = 3.5; //mm
 double image_height = 480.0; //Image Width: 640, Image Height: 480
-double sensor_height = 5.8; //mm
+double sensor_height = 3.52; //mm Note 4 Xiaomi
+double caliberation_factor = 1;
 
 double
 humanDistance(double focal_length, double real_height, double image_height, double human_height,
               double sensor_height) {
-    return ((focal_length * real_height * image_height) /
+    return ((focal_length * real_height * image_height * caliberation_factor) /
             (human_height * sensor_height * 1000.0)); //m
 }
 
@@ -128,12 +129,12 @@ detectHuman(Mat &frame, double distance12, double distance23, double distance31,
     char str[500];
 
     for (int i = 0; i < resRects.size(); i++) {
-        rectangle(frame, Point(resRects[i].x, resRects[i].y),
+        rectangle(frame, Point(resRects[i].x, resRects[i].y + 25),
                   Point(resRects[i].x + resRects[i].width, resRects[i].y + resRects[i].height -
-                                                           25), //(-25) Reason: Non-Maximum Suppression
+                                                           25), //(25, -25) Reason: Non-Maximum Suppression
                   CV_RGB((125 - i * 100) % 255, (i * 100) % 255, (255 - i * 100) % 255));
 
-        double human_height = resRects[i].height - 25;
+        double human_height = resRects[i].height - 50;
         distance_to_human = humanDistance(focal_length, real_height, image_height, human_height,
                                           sensor_height);
 
