@@ -193,16 +193,16 @@ detectHuman(Mat &frame, double distance12, double distance23, double distance31,
         string Id_text;
 
         if (friendId == 0) {
-            Id_text = "Enemy ";
+            Id_text = "Unknown ";
         }
         if (friendId == 1) {
-            Id_text = "Friend: ayush.saarathi ";
+            Id_text = "Known: ayush.saarathi ";
         }
         if (friendId == 2) {
-            Id_text = "Friend: iitg.ayush ";
+            Id_text = "Known: iitg.ayush ";
         }
         if (friendId == 3) {
-            Id_text = "Friend: ayushvijay.iitg ";
+            Id_text = "Known: ayushvijay.iitg ";
         }
 
         /*
