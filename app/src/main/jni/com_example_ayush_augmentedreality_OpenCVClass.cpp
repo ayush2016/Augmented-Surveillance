@@ -130,12 +130,12 @@ detectHuman(Mat &frame, double distance12, double distance23, double distance31,
     char str[500];
 
     for (int i = 0; i < resRects.size(); i++) {
-        rectangle(frame, Point(resRects[i].x, resRects[i].y + 25),
+        rectangle(frame, Point(resRects[i].x, resRects[i].y + 10 ),
                   Point(resRects[i].x + resRects[i].width, resRects[i].y + resRects[i].height -
-                                                           25), //(25, -25) Reason: Non-Maximum Suppression
+                                                           20), //(10, -20) Reason: Non-Maximum Suppression
                   CV_RGB((125 - i * 100) % 255, (i * 100) % 255, (255 - i * 100) % 255));
 
-        double human_height = resRects[i].height - 50;
+        double human_height = resRects[i].height - 30;
         distance_to_human = humanDistance(focal_length, real_height, image_height, human_height,
                                           sensor_height);
 
