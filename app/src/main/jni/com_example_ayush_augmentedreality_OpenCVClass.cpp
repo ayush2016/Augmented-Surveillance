@@ -23,13 +23,14 @@ double real_height = 1800.0; //mm
 double focal_length = 3.5; //mm
 double image_height = 480.0; //Image Width: 640, Image Height: 480
 double sensor_height = 3.52; //mm Note 4 Xiaomi
-double caliberation_factor = 1;
+double mul_calibration_factor = 1.023;
+double add_calibration_factor = -0.181;
 
 double
 humanDistance(double focal_length, double real_height, double image_height, double human_height,
               double sensor_height) {
-    return ((focal_length * real_height * image_height * caliberation_factor) /
-            (human_height * sensor_height * 1000.0)); //m
+    return ((focal_length * real_height * image_height * mul_calibration_factor) /
+            (human_height * sensor_height * 1000.0)) + add_calibration_factor; //m
 }
 
 void detectFace(Mat &frame) {
