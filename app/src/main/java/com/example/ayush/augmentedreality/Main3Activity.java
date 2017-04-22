@@ -76,7 +76,6 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         if (mUserId.equals("hrm3XLx0FaS9NU2QnmLwfNxa5Lk2")) {
             mUserIdNo = 3;
         }
-        geoDistance();
     }
 
     @Override
@@ -155,6 +154,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         drawLocations("Rvev8SzktpWMN4COLHS6yWQOnxQ2");
         drawLocations("V5GaSfckMkXXjra3Hq3BqXgdzt63");
         drawLocations("hrm3XLx0FaS9NU2QnmLwfNxa5Lk2");
+        geoDistance();
     }
 
     private void saveToFirebase() {
