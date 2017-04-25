@@ -14,9 +14,35 @@ JNIEXPORT void JNICALL Java_com_example_ayush_augmentedreality_OpenCVClass_human
     double distance12 = d12;
     double distance23 = d23;
     double distance31 = d31;
+    string haversine_dist_text;
     int mUserIdNo = user;
-    detectHuman(frame, distance12, distance23, distance31, mUserIdNo);
 
+    if (mUserIdNo == 1) {
+        haversine_dist_text = "iitg.ayush " + static_cast<ostringstream *>(&(ostringstream()
+                << distance12))->str() + ", " + "ayushvijay.iitg " + static_cast<ostringstream *>(&(ostringstream()
+                << distance31))->str();
+
+        putText(frame, haversine_dist_text, cvPoint(30,30),
+                FONT_HERSHEY_COMPLEX_SMALL, 0.8, cvScalar(200,200,250), 1, 1);
+    }
+    if (mUserIdNo == 2) {
+        haversine_dist_text = "ayush.saarathi " + static_cast<ostringstream *>(&(ostringstream()
+                << distance12))->str() + ", " + "ayushvijay.iitg " + static_cast<ostringstream *>(&(ostringstream()
+                << distance23))->str();
+
+        putText(frame, haversine_dist_text, cvPoint(30,30),
+                FONT_HERSHEY_COMPLEX_SMALL, 0.8, cvScalar(200,200,250), 1, 1);
+    }
+    if (mUserIdNo == 3) {
+        haversine_dist_text = "iitg.ayush " + static_cast<ostringstream *>(&(ostringstream()
+                << distance23))->str() + ", " + "ayush.saarathi " + static_cast<ostringstream *>(&(ostringstream()
+                << distance31))->str();
+
+        putText(frame, haversine_dist_text, cvPoint(30,30),
+                FONT_HERSHEY_COMPLEX_SMALL, 0.8, cvScalar(200,200,250), 1, 1);
+    }
+
+    detectHuman(frame, distance12, distance23, distance31, mUserIdNo);
 }
 
 double real_height = 1800.0; //mm
