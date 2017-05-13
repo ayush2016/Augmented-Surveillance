@@ -30,13 +30,6 @@
         android:text="@string/map" />
 
     <Button
-        android:id="@+id/activity_recognition"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:onClick="newActivityOnClick"
-        android:text="@string/activity_recognition" />
-
-    <Button
         android:id="@+id/master_data"
         android:layout_width="180dp"
         android:layout_height="40dp"
@@ -44,61 +37,10 @@
         android:text="@string/master_data" />
 
     <Button
-        android:id="@+id/accelerometer"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:onClick="newAccelerometerActivityOnClick"
-        android:text="@string/accelerometer" />
-
-    <Button
-        android:id="@+id/gyroscope"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:onClick="newGyroscopeActivityOnClick"
-        android:text="@string/gyroscope" />
-
-    <Button
-        android:id="@+id/magnetometer"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:onClick="newMagnetometerActivityOnClick"
-        android:text="@string/magnetometer" />
-
-    <Button
-        android:id="@+id/scan_qr_code"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:onClick="newScanQRCodeActivityOnClick"
-        android:text="@string/scan_qr_code" />
-
-    <Button
-        android:id="@+id/generate_qr_code"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:onClick="newGenerateQRCodeActivityOnClick"
-        android:text="@string/generate_qr_code" />
-
-    <Button
-        android:id="@+id/face_detection"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:onClick="newFaceDetectionActivityOnClick"
-        android:text="@string/face_detection" />
-
-    <Button
-        android:id="@+id/video_face_detection"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:onClick="newVideoFaceDetectionActivityOnClick"
-        android:text="@string/video_face_detection" />
-
-    <Button
         android:id="@+id/opencv"
         android:layout_width="180dp"
         android:layout_height="40dp"
         android:onClick="newOpenCVActivityOnClick"
         android:text="@string/opencv" />
-
-
 
 </LinearLayout>

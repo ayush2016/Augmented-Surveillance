@@ -33,12 +33,6 @@
         <activity android:name=".LogInActivity" />
         <activity android:name=".SignUpActivity" />
 
-        <service
-            android:name=".ActivitiesIntentService"
-            android:exported="false" />
-
-        <activity android:name=".Main2Activity" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCL9T0AkzxblqfhfPAJQh8vIVswJoGtiMg" />
@@ -48,14 +42,7 @@
 
         <activity android:name=".Main3Activity" />
         <activity android:name=".Main4Activity" />
-        <activity android:name=".Main5Activity" />
-        <activity android:name=".Main6Activity" />
-        <activity android:name=".Main7Activity" />
-        <activity android:name=".Main8Activity" />
         <activity android:name=".Main9Activity" />
-        <activity android:name=".Main10Activity" />
-        <activity android:name=".Main11Activity" />
-        <activity android:name=".FaceTrackerActivity" />
         <activity android:name=".OpenCVActivity"></activity>
     </application>
 

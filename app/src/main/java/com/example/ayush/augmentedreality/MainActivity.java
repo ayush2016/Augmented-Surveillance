@@ -66,11 +66,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void newActivityOnClick(View V) {
-        Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
-        startActivity(intent);
-    }
-
     public void newMapActivityOnClick(View V) {
         Intent intent = new Intent(getApplicationContext(), Main3Activity.class);
         startActivity(intent);
@@ -81,41 +76,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void newAccelerometerActivityOnClick(View V) {
-        Intent intent = new Intent(getApplicationContext(), Main5Activity.class);
-        startActivity(intent);
-    }
 
-    public void newGyroscopeActivityOnClick(View V) {
-        Intent intent = new Intent(getApplicationContext(), Main6Activity.class);
-        startActivity(intent);
-    }
-
-    public void newMagnetometerActivityOnClick(View V) {
-        Intent intent = new Intent(getApplicationContext(), Main7Activity.class);
-        startActivity(intent);
-    }
-
-    public void newScanQRCodeActivityOnClick(View V) {
-        Intent intent = new Intent(getApplicationContext(), Main8Activity.class);
-        startActivity(intent);
-    }
-
-    public void newGenerateQRCodeActivityOnClick(View V) {
-        Intent intent = new Intent(getApplicationContext(), Main10Activity.class);
-        startActivity(intent);
-    }
-
-    public void newFaceDetectionActivityOnClick(View V) {
-        Intent intent = new Intent(getApplicationContext(), Main11Activity.class);
-        startActivity(intent);
-    }
-
-
-    public void newVideoFaceDetectionActivityOnClick(View V) {
-        Intent intent = new Intent(getApplicationContext(), FaceTrackerActivity.class);
-        startActivity(intent);
-    }
 
     public void newOpenCVActivityOnClick(View V) {
         Intent intent = new Intent(getApplicationContext(), OpenCVActivity.class);
