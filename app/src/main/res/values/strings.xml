@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Augmented WarZone</string>
+    <string name="app_name">Augmented War Zone</string>
     <string name="password_hint">Password</string>
     <string name="email_hint">Email</string>
     <string name="sign_up_button_label">Sign Up</string>
@@ -12,13 +12,9 @@
     <string name="action_logout">Logout</string>
     <string name="longitude">LONGITUDE</string>
     <string name="latitude">LATITUDE</string>
-    <string name="master_data">MASTER DATA</string>
-    <string name="activity_recognition">Activity Recognition</string>
-    <string name="map">TRACK ON MAP</string>
+    <string name="master_data">Core INFORMATION</string>
+    <string name="map">TRACKING</string>
     <string name="scan_qr_code">Scan QR Code</string>
-    <string name="gps_coordinates">GPS Coordinates</string>
-    <string name="generate_qr_code">Generate QR Code</string>
-    <string name="face_detection">Face Detection</string>
-    <string name="video_face_detection">REALTIME DETECTION</string>
-    <string name="opencv">AR OpenCV Realtime</string>
+    <string name="gps_coordinates">GPS coordinates</string>
+    <string name="opencv">IDENTIFICATION</string>
 </resources>
