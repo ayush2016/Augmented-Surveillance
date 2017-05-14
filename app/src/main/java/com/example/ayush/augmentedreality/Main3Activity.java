@@ -54,6 +54,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
     static double latitude1, longitude1, latitude2, longitude2, latitude3, longitude3;
     static double distance12, distance23, distance31;
     static int mUserIdNo;
+    private static final String TAG = "Main3Activity";
     private DatabaseReference myFirebaseRef = FirebaseDatabase.getInstance().getReference();
     List<Marker> markerList = new ArrayList<>();
 
@@ -91,7 +92,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
     }
 
     protected synchronized void buildGoogleApiClient() {
-        Toast.makeText(this, "buildGoogleApiClient", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "buildGoogleApiClient", Toast.LENGTH_SHORT).show();
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -101,7 +102,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
 
     @Override
     public void onConnected(Bundle bundle) {
-        Toast.makeText(this, "onConnected", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "onConnected", Toast.LENGTH_SHORT).show();
         Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
         if (mLastLocation != null) {
@@ -123,16 +124,17 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
 
     @Override
     public void onConnectionSuspended(int i) {
-        Toast.makeText(this, "onConnectionSuspended", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "onConnectionSuspended", Toast.LENGTH_SHORT).show();
+        mGoogleApiClient.connect();
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Toast.makeText(this, "onConnectionFailed", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "onConnectionFailed", Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "Connection failed. Error: " + connectionResult.getErrorCode());
     }
 
     Location mCurrentLocation;
-    private String mLastUpdateTime;
 
     @Override
     public void onLocationChanged(Location location) {
@@ -140,8 +142,6 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         dateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
-        Date date = new Date();
-        mLastUpdateTime = dateFormat.format(date);
 
         if (currLocationMarker != null) {
             currLocationMarker.remove();
@@ -153,26 +153,15 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.army));
         currLocationMarker = mGoogleMap.addMarker(markerOptions);
 
-        Toast.makeText(this, "Location Changed", Toast.LENGTH_SHORT).show();
-        saveToFirebase();
+       // Toast.makeText(this, "Location Changed", Toast.LENGTH_SHORT).show();
         drawLocations("Rvev8SzktpWMN4COLHS6yWQOnxQ2");
         drawLocations("V5GaSfckMkXXjra3Hq3BqXgdzt63");
         drawLocations("hrm3XLx0FaS9NU2QnmLwfNxa5Lk2");
         geoDistance();
     }
 
-    private void saveToFirebase() {
-        Map<String, Object> mLocations = new HashMap<String, Object>();
-        mLocations.put("timestamp", mLastUpdateTime);
-        Map<String, Double> mCoordinate = new HashMap<String, Double>();
-        mCoordinate.put("latitude", mCurrentLocation.getLatitude());
-        mCoordinate.put("longitude", mCurrentLocation.getLongitude());
-        mLocations.put("location", mCoordinate);
-        myFirebaseRef.child("users").child(mUserId).push().setValue(mLocations);
-    }
-
     private void drawLocations(final String userId) {
-        Query queryRef = myFirebaseRef.child("users").child(userId).orderByChild("timestamp").limitToLast(3);
+        Query queryRef = myFirebaseRef.child("users").child(userId).orderByChild("timestamp").limitToLast(5);
         queryRef.addChildEventListener(new ChildEventListener() {
             LatLngBounds bounds;
             LatLngBounds.Builder builder = new LatLngBounds.Builder();
@@ -375,14 +364,14 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         return value * Math.PI / 180;
     }
 
-    /*
+
     @Override
     protected void onStop() {
         super.onStop();
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
-    } */
+    }
 
     @Override
     public void onStart() {
