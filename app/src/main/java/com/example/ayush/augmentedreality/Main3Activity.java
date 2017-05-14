@@ -172,7 +172,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
     }
 
     private void drawLocations(final String userId) {
-        Query queryRef = myFirebaseRef.child("users").child(userId).orderByChild("timestamp");
+        Query queryRef = myFirebaseRef.child("users").child(userId).orderByChild("timestamp").limitToLast(3);
         queryRef.addChildEventListener(new ChildEventListener() {
             LatLngBounds bounds;
             LatLngBounds.Builder builder = new LatLngBounds.Builder();

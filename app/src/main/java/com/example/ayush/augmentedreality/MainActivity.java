@@ -76,8 +76,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-
     public void newOpenCVActivityOnClick(View V) {
         Intent intent = new Intent(getApplicationContext(), OpenCVActivity.class);
         startActivity(intent);
