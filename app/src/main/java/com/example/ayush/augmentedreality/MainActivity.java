@@ -1,7 +1,9 @@
 package com.example.ayush.augmentedreality;
 
+import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
@@ -286,6 +288,15 @@ public class MainActivity extends RuntimePermissionsActivity implements GoogleAp
     protected void onStart() {
         super.onStart();
         mGoogleApiClient.connect();
+
+        LocationManager locationManager =
+                (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        boolean gpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        if (!gpsEnabled) {
+            Toast.makeText(this, "Please enable your GPS!", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
