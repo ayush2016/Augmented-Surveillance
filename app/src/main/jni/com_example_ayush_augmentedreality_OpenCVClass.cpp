@@ -58,7 +58,7 @@ JNIEXPORT void JNICALL Java_com_example_ayush_augmentedreality_OpenCVClass_human
     double distance23 = d23;
     double distance31 = d31;
     string haversine_dist_text;
-    string dist_text;
+    string dist_text_fixed;
     int mUserIdNo = user;
 
     for (int i = 3; i < 12; i++) {
@@ -66,8 +66,8 @@ JNIEXPORT void JNICALL Java_com_example_ayush_augmentedreality_OpenCVClass_human
         //      2, 8);
         circle(frame, Point(318, 900 - 180 + pixel_distance[i]), 750.0, Scalar(0, 0, 255), 1,
                8); //center estimation needs to be done
-        dist_text = static_cast<ostringstream *>(&(ostringstream() << i))->str() + "m";
-        putText(frame, dist_text, cvPoint(320, 900 - 180 + pixel_distance[i] - 750),
+        dist_text_fixed = static_cast<ostringstream *>(&(ostringstream() << i))->str() + "m";
+        putText(frame, dist_text_fixed, cvPoint(320, 900 - 180 + pixel_distance[i] - 750),
                 FONT_HERSHEY_COMPLEX_SMALL, 0.8, cvScalar(200, 200, 250), 1, 1);
     }
 
@@ -238,8 +238,9 @@ detectHuman(Mat &frame, double distance12, double distance23, double distance31,
             }
         }
 
+
         if (mUserIdNo == 2) {
-            if (fabs(distance12 - distance_to_human) > fabs(distance23 - distance_to_human)) {
+            if (fabs(distance12 - distance_to_human) < fabs(distance23 - distance_to_human)) {
                 if (fabs(distance12 - distance_to_human) < 1.0) {
                     friendId = 1;
                 }
@@ -251,7 +252,7 @@ detectHuman(Mat &frame, double distance12, double distance23, double distance31,
         }
 
         if (mUserIdNo == 3) {
-            if (fabs(distance31 - distance_to_human) > fabs(distance23 - distance_to_human)) {
+            if (fabs(distance31 - distance_to_human) < fabs(distance23 - distance_to_human)) {
                 if (fabs(distance31 - distance_to_human) < 1.0) {
                     friendId = 1;
                 }
@@ -270,6 +271,8 @@ detectHuman(Mat &frame, double distance12, double distance23, double distance31,
                             distance31);
         __android_log_print(ANDROID_LOG_INFO, "User Id No.", "mUserIdNo = %d",
                             mUserIdNo);
+        __android_log_print(ANDROID_LOG_INFO, "Friend Id No.", "friendId = %d",
+                            friendId);
 
         string dist_text = static_cast<ostringstream *>(&(ostringstream()
                 << distance_to_human))->str();
@@ -366,7 +369,7 @@ detectHuman2(Mat &frame, double distance12, double distance23, double distance31
         }
 
         if (mUserIdNo == 2) {
-            if (fabs(distance12 - distance_to_human) > fabs(distance23 - distance_to_human)) {
+            if (fabs(distance12 - distance_to_human) < fabs(distance23 - distance_to_human)) {
                 if (fabs(distance12 - distance_to_human) < 1.0) {
                     friendId = 1;
                 }
@@ -378,7 +381,7 @@ detectHuman2(Mat &frame, double distance12, double distance23, double distance31
         }
 
         if (mUserIdNo == 3) {
-            if (fabs(distance31 - distance_to_human) > fabs(distance23 - distance_to_human)) {
+            if (fabs(distance31 - distance_to_human) < fabs(distance23 - distance_to_human)) {
                 if (fabs(distance31 - distance_to_human) < 1.0) {
                     friendId = 1;
                 }
@@ -397,6 +400,8 @@ detectHuman2(Mat &frame, double distance12, double distance23, double distance31
                             distance31);
         __android_log_print(ANDROID_LOG_INFO, "User Id No.", "mUserIdNo = %d",
                             mUserIdNo);
+        __android_log_print(ANDROID_LOG_INFO, "Friend Id No.", "friendId = %d",
+                            friendId);
 
         string dist_text = static_cast<ostringstream *>(&(ostringstream()
                 << distance_to_human))->str();
