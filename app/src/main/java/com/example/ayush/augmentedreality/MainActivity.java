@@ -3,13 +3,12 @@ package com.example.ayush.augmentedreality;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -18,7 +17,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -35,7 +33,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
-public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+import android.Manifest;
+
+public class MainActivity extends RuntimePermissionsActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     private FirebaseAuth mFirebaseAuth;
     private static final String TAG = "MainActivity";
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     static double latitude1, longitude1, latitude2, longitude2, latitude3, longitude3;
     private DatabaseReference myFirebaseRef = FirebaseDatabase.getInstance().getReference();
     private String mUserId;
+    private static final int REQUEST_PERMISSIONS = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +54,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
+        if (mFirebaseUser == null) {
+            loadLogInView();
+        }
+
         assert mFirebaseUser != null;
         mUserId = mFirebaseUser.getUid();
         if (mUserId.equals("Rvev8SzktpWMN4COLHS6yWQOnxQ2")) {
@@ -70,15 +77,27 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             mUserIdNo = 3;
         }
 
-        if (mFirebaseUser == null) {
-            loadLogInView();
-        }
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.super.requestAppPermissions(new
+                        String[]{Manifest.permission.CAMERA,
+                        Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, R.string
+                        .runtime_permissions_txt, REQUEST_PERMISSIONS);
+            }
+        });
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
+    }
+
+    @Override
+    public void onPermissionsGranted(final int requestCode) {
+        Toast.makeText(this, "All required permissions have already been assigned.", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -269,13 +288,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         mGoogleApiClient.connect();
     }
 
-   /* @Override
-    protected void onStop() {
-        super.onStop();
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
-    } */
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

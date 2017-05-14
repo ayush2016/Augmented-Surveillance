@@ -1,7 +1,9 @@
 package com.example.ayush.augmentedreality;
 
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,7 +49,6 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
     LatLng latLng;
     GoogleMap mGoogleMap;
     Marker currLocationMarker;
-    private String mUserId;
     private static final String TAG = "Main3Activity";
     private DatabaseReference myFirebaseRef = FirebaseDatabase.getInstance().getReference();
     List<Marker> markerList = new ArrayList<>();
@@ -65,7 +66,6 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
         assert mFirebaseUser != null;
-        mUserId = mFirebaseUser.getUid();
     }
 
     @Override
