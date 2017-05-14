@@ -96,8 +96,8 @@ public class OpenCVActivity extends AppCompatActivity implements CameraBridgeVie
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         mRgba = inputFrame.rgba();
         //OpenCVClass.faceDetection(mRgba.getNativeObjAddr());
-        OpenCVClass.humanDetection(mRgba.getNativeObjAddr(), Main3Activity.distance12,
-                Main3Activity.distance23, Main3Activity.distance31, Main3Activity.mUserIdNo);
+        OpenCVClass.humanDetection(mRgba.getNativeObjAddr(), MainActivity.distance12,
+                MainActivity.distance23, MainActivity.distance31, MainActivity.mUserIdNo);
         return mRgba;
     }
 }

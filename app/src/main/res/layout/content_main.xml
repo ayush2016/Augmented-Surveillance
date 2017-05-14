@@ -43,7 +43,6 @@
         android:layout_toEndOf="@+id/gps_coordinates" />
 
     <Button
-        android:id="@+id/master_data"
         android:background="@drawable/core"
         android:layout_width="150dp"
         android:layout_height="220dp"

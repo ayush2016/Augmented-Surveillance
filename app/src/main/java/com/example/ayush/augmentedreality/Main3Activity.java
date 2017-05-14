@@ -5,9 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -35,7 +33,6 @@ import com.google.firebase.database.Query;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,9 +48,6 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
     GoogleMap mGoogleMap;
     Marker currLocationMarker;
     private String mUserId;
-    static double latitude1, longitude1, latitude2, longitude2, latitude3, longitude3;
-    static double distance12, distance23, distance31;
-    static int mUserIdNo;
     private static final String TAG = "Main3Activity";
     private DatabaseReference myFirebaseRef = FirebaseDatabase.getInstance().getReference();
     List<Marker> markerList = new ArrayList<>();
@@ -72,15 +66,6 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
         assert mFirebaseUser != null;
         mUserId = mFirebaseUser.getUid();
-        if (mUserId.equals("Rvev8SzktpWMN4COLHS6yWQOnxQ2")) {
-            mUserIdNo = 1;
-        }
-        if (mUserId.equals("V5GaSfckMkXXjra3Hq3BqXgdzt63")) {
-            mUserIdNo = 2;
-        }
-        if (mUserId.equals("hrm3XLx0FaS9NU2QnmLwfNxa5Lk2")) {
-            mUserIdNo = 3;
-        }
     }
 
     @Override
@@ -92,7 +77,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
     }
 
     protected synchronized void buildGoogleApiClient() {
-      //  Toast.makeText(this, "buildGoogleApiClient", Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, "buildGoogleApiClient", Toast.LENGTH_SHORT).show();
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -102,7 +87,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
 
     @Override
     public void onConnected(Bundle bundle) {
-       // Toast.makeText(this, "onConnected", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "onConnected", Toast.LENGTH_SHORT).show();
         Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
         if (mLastLocation != null) {
@@ -124,13 +109,13 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
 
     @Override
     public void onConnectionSuspended(int i) {
-      //  Toast.makeText(this, "onConnectionSuspended", Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, "onConnectionSuspended", Toast.LENGTH_SHORT).show();
         mGoogleApiClient.connect();
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-      //  Toast.makeText(this, "onConnectionFailed", Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, "onConnectionFailed", Toast.LENGTH_SHORT).show();
         Log.i(TAG, "Connection failed. Error: " + connectionResult.getErrorCode());
     }
 
@@ -153,11 +138,10 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.army));
         currLocationMarker = mGoogleMap.addMarker(markerOptions);
 
-       // Toast.makeText(this, "Location Changed", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "Location Changed", Toast.LENGTH_SHORT).show();
         drawLocations("Rvev8SzktpWMN4COLHS6yWQOnxQ2");
         drawLocations("V5GaSfckMkXXjra3Hq3BqXgdzt63");
         drawLocations("hrm3XLx0FaS9NU2QnmLwfNxa5Lk2");
-        geoDistance();
     }
 
     private void drawLocations(final String userId) {
@@ -227,143 +211,6 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
             }
         });
     }
-
-    private void geoDistance() {
-        String UserId1 = "Rvev8SzktpWMN4COLHS6yWQOnxQ2"; //ayush.saarathi@gmail.com
-        String UserId2 = "V5GaSfckMkXXjra3Hq3BqXgdzt63"; //iitg.ayush@gmail.com
-        String UserId3 = "hrm3XLx0FaS9NU2QnmLwfNxa5Lk2"; //ayushvijay.iitg@gmail.com
-
-        Query queryRef1 = myFirebaseRef.child("users").child(UserId1).orderByChild("timestamp").limitToLast(1);
-        queryRef1.addChildEventListener(new ChildEventListener() {
-
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Map data = (Map) dataSnapshot.getValue();
-                Map mCoordinate = (HashMap) data.get("location");
-                Main3Activity.latitude1 = (double) (mCoordinate.get("latitude"));
-                Main3Activity.longitude1 = (double) (mCoordinate.get("longitude"));
-                Log.d("UserId1", "Lat:" + String.valueOf(Main3Activity.latitude1) + " " + "Long:" + String.valueOf(Main3Activity.longitude1));
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        Query queryRef2 = myFirebaseRef.child("users").child(UserId2).orderByChild("timestamp").limitToLast(1);
-        queryRef2.addChildEventListener(new ChildEventListener() {
-
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Map data = (Map) dataSnapshot.getValue();
-                Map mCoordinate = (HashMap) data.get("location");
-                Main3Activity.latitude2 = (double) (mCoordinate.get("latitude"));
-                Main3Activity.longitude2 = (double) (mCoordinate.get("longitude"));
-                Log.d("UserId2", "Lat:" + String.valueOf(Main3Activity.latitude2) + " " + "Long:" + String.valueOf(Main3Activity.longitude2));
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        Query queryRef3 = myFirebaseRef.child("users").child(UserId3).orderByChild("timestamp").limitToLast(1);
-        queryRef3.addChildEventListener(new ChildEventListener() {
-
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Map data = (Map) dataSnapshot.getValue();
-                Map mCoordinate = (HashMap) data.get("location");
-                Main3Activity.latitude3 = (double) (mCoordinate.get("latitude"));
-                Main3Activity.longitude3 = (double) (mCoordinate.get("longitude"));
-                Log.d("UserId3", "Lat:" + String.valueOf(Main3Activity.latitude3) + " " + "Long:" + String.valueOf(Main3Activity.longitude3));
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        Log.d("check", String.valueOf(Main3Activity.latitude1));
-
-        new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        Main3Activity.distance12 = haversineDistance(Main3Activity.latitude1, Main3Activity.longitude1, Main3Activity.latitude2, Main3Activity.longitude2);
-                        Main3Activity.distance23 = haversineDistance(Main3Activity.latitude2, Main3Activity.longitude2, Main3Activity.latitude3, Main3Activity.longitude3);
-                        Main3Activity.distance31 = haversineDistance(Main3Activity.latitude3, Main3Activity.longitude3, Main3Activity.latitude1, Main3Activity.longitude1);
-                        Log.d("distance12", String.valueOf(Main3Activity.distance12));
-                        Log.d("distance23", String.valueOf(Main3Activity.distance23));
-                        Log.d("distance31", String.valueOf(Main3Activity.distance31));
-                    }
-                },
-                10000
-        );
-    }
-
-    private static double haversineDistance(double lat1, double lon1, double lat2, double lon2) {
-        final int R = 6371000; // Radius of the earth
-        double latDistance = toRad(lat2 - lat1);
-        double lonDistance = toRad(lon2 - lon1);
-        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2) +
-                Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-                        Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        return R * c; //distance in metres
-    }
-
-    private static Double toRad(Double value) {
-        return value * Math.PI / 180;
-    }
-
 
     @Override
     protected void onStop() {

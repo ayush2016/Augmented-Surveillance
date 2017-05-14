@@ -14,7 +14,6 @@
     <string name="latitude">LATITUDE</string>
     <string name="master_data">Core INFORMATION</string>
     <string name="map">TRACKING</string>
-    <string name="scan_qr_code">Scan QR Code</string>
     <string name="gps_coordinates">GPS coordinates</string>
-    <string name="opencv">IDENTIFICATION (REAL HEIGHT of subject IS KNOWN)</string>
+    <string name="opencv">IDENTIFICATION (ACTUAL HEIGHT OF SUBJECT IS KNOWN)</string>
 </resources>
