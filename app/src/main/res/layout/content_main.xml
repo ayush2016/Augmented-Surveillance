@@ -24,8 +24,8 @@
         android:layout_below="@+id/opencv"
         android:layout_marginRight="10dp"
         android:background="@drawable/gps"
-        android:onClick="newGPSCoordinatesActivityOnClick"
-        android:text="@string/gps_coordinates"
+        android:onClick="newIdentificationActivityOnClick"
+        android:text="@string/identification"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold" />
 

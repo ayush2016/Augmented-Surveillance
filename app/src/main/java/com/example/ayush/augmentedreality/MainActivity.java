@@ -330,7 +330,7 @@ public class MainActivity extends RuntimePermissionsActivity implements GoogleAp
         startActivity(intent);
     }
 
-    public void newGPSCoordinatesActivityOnClick(View V) {
+    public void newIdentificationActivityOnClick(View V) {
         Intent intent = new Intent(getApplicationContext(), Main9Activity.class);
         startActivity(intent);
     }
