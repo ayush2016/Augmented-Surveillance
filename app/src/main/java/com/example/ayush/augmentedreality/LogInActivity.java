@@ -1,8 +1,10 @@
 package com.example.ayush.augmentedreality;
 
+import android.*;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -17,13 +20,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-public class LogInActivity extends AppCompatActivity {
+public class LogInActivity extends RuntimePermissionsActivity {
 
     protected EditText emailEditText;
     protected EditText passwordEditText;
     protected Button logInButton;
     protected TextView signUpTextView;
     private FirebaseAuth mFirebaseAuth;
+    private static final int REQUEST_PERMISSIONS = 20;
 
 
     @Override
@@ -34,6 +38,17 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LogInActivity.super.requestAppPermissions(new
+                        String[]{android.Manifest.permission.CAMERA,
+                        android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, R.string
+                        .runtime_permissions_txt, REQUEST_PERMISSIONS);
+            }
+        });
 
         signUpTextView = (TextView) findViewById(R.id.signUpText);
         emailEditText = (EditText) findViewById(R.id.emailField);
@@ -87,5 +102,10 @@ public class LogInActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onPermissionsGranted(final int requestCode) {
+        Toast.makeText(this, "All required permissions have already been assigned.", Toast.LENGTH_LONG).show();
     }
 }

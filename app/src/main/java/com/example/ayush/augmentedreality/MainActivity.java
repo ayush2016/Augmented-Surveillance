@@ -6,6 +6,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -37,7 +38,7 @@ import java.util.TimeZone;
 
 import android.Manifest;
 
-public class MainActivity extends RuntimePermissionsActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     private FirebaseAuth mFirebaseAuth;
     private static final String TAG = "MainActivity";
@@ -48,7 +49,6 @@ public class MainActivity extends RuntimePermissionsActivity implements GoogleAp
     static double latitude1, longitude1, latitude2, longitude2, latitude3, longitude3;
     private DatabaseReference myFirebaseRef = FirebaseDatabase.getInstance().getReference();
     private String mUserId;
-    private static final int REQUEST_PERMISSIONS = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,27 +79,11 @@ public class MainActivity extends RuntimePermissionsActivity implements GoogleAp
             mUserIdNo = 3;
         }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainActivity.super.requestAppPermissions(new
-                        String[]{Manifest.permission.CAMERA,
-                        Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, R.string
-                        .runtime_permissions_txt, REQUEST_PERMISSIONS);
-            }
-        });
-
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
-    }
-
-    @Override
-    public void onPermissionsGranted(final int requestCode) {
-        Toast.makeText(this, "All required permissions have already been assigned.", Toast.LENGTH_LONG).show();
     }
 
     @Override
