@@ -52,6 +52,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
     private static final String TAG = "Main3Activity";
     private DatabaseReference myFirebaseRef = FirebaseDatabase.getInstance().getReference();
     List<Marker> markerList = new ArrayList<>();
+    FirebaseUser mFirebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,7 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         mapFragment.getMapAsync(this);
 
         FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
         assert mFirebaseUser != null;
     }
 
@@ -139,13 +140,22 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         currLocationMarker = mGoogleMap.addMarker(markerOptions);
 
         // Toast.makeText(this, "Location Changed", Toast.LENGTH_SHORT).show();
-        drawLocations("Rvev8SzktpWMN4COLHS6yWQOnxQ2");
-        drawLocations("V5GaSfckMkXXjra3Hq3BqXgdzt63");
-        drawLocations("hrm3XLx0FaS9NU2QnmLwfNxa5Lk2");
+        if(mFirebaseUser.getUid().equals("Rvev8SzktpWMN4COLHS6yWQOnxQ2")){
+            drawLocations("V5GaSfckMkXXjra3Hq3BqXgdzt63");
+            drawLocations("hrm3XLx0FaS9NU2QnmLwfNxa5Lk2");
+        }
+        if(mFirebaseUser.getUid().equals("V5GaSfckMkXXjra3Hq3BqXgdzt63")){
+            drawLocations("Rvev8SzktpWMN4COLHS6yWQOnxQ2");
+            drawLocations("hrm3XLx0FaS9NU2QnmLwfNxa5Lk2");
+        }
+        if(mFirebaseUser.getUid().equals("hrm3XLx0FaS9NU2QnmLwfNxa5Lk2")){
+            drawLocations("V5GaSfckMkXXjra3Hq3BqXgdzt63");
+            drawLocations("Rvev8SzktpWMN4COLHS6yWQOnxQ2");
+        }
     }
 
     private void drawLocations(final String userId) {
-        Query queryRef = myFirebaseRef.child("users").child(userId).orderByChild("timestamp").limitToLast(5);
+        Query queryRef = myFirebaseRef.child("users").child(userId).orderByChild("timestamp").limitToLast(1);
         queryRef.addChildEventListener(new ChildEventListener() {
             LatLngBounds bounds;
             LatLngBounds.Builder builder = new LatLngBounds.Builder();

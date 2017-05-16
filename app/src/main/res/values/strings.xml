@@ -10,11 +10,8 @@
     <string name="login_button_label">Login</string>
     <string name="sign_up_text">Sign Up!</string>
     <string name="action_logout">Logout</string>
-    <string name="longitude">LONGITUDE</string>
-    <string name="latitude">LATITUDE</string>
-    <string name="master_data">Core INFORMATION</string>
+    <string name="master_data">MASTER DATA</string>
     <string name="map">TRACKING</string>
-    <string name="identification">IDENTIFICATION-II (HEIGHT OF CAMERA IS KNOWN)</string>
-    <string name="opencv">IDENTIFICATION-I (ACTUAL HEIGHT OF SUBJECT IS KNOWN)</string>
+    <string name="opencv">IDENTIFICATION</string>
     <string name="runtime_permissions_txt">Please enable required permissions.</string>
 </resources>

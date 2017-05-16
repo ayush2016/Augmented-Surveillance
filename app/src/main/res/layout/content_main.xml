@@ -16,59 +16,51 @@
     tools:showIn="@layout/activity_main">
 
     <Button
-        android:id="@+id/gps_coordinates"
-        android:layout_width="150dp"
-        android:layout_height="220dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/opencv"
-        android:layout_marginRight="10dp"
-        android:onClick="newIdentificationActivityOnClick"
-        android:text="@string/identification"
-        android:textColor="@color/colorPrimaryDark"
-        android:textStyle="bold" />
-
-    <Button
         android:id="@+id/map"
         android:background="@drawable/track_on_map"
-        android:layout_width="150dp"
-        android:layout_height="220dp"
+        android:layout_width="160dp"
+        android:layout_height="238dp"
         android:onClick="newMapActivityOnClick"
         android:text="@string/map"
         android:textStyle="bold"
+        android:textSize="21sp"
         android:textColor="@color/colorPrimaryDark"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/gps_coordinates"
-        android:layout_toEndOf="@+id/gps_coordinates" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/button2"
+        android:layout_toLeftOf="@+id/button2" />
 
     <Button
         android:background="@drawable/core"
-        android:layout_width="150dp"
-        android:layout_height="220dp"
+        android:layout_width="140dp"
+        android:layout_height="238dp"
         android:onClick="newDataActivityOnClick"
         android:text="@string/master_data"
         android:textColor="@color/colorPrimaryDark"
-        android:layout_marginBottom="10dp"
         android:textStyle="bold"
-        android:layout_alignTop="@+id/opencv"
-        android:layout_alignLeft="@+id/map"
-        android:layout_alignStart="@+id/map"
-        />
+        android:textSize="21sp"
+        android:id="@+id/button2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true" />
 
     <Button
         android:id="@+id/opencv"
-        android:layout_width="150dp"
-        android:layout_height="220dp"
-        android:layout_above="@+id/map"
-        android:layout_alignLeft="@+id/gps_coordinates"
-        android:layout_alignStart="@+id/gps_coordinates"
-        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/button2"
+        android:layout_toStartOf="@+id/button2"
         android:background="@drawable/identify"
         android:onClick="newOpenCVActivityOnClick"
         android:text="@string/opencv"
         android:textColor="@color/colorPrimaryDark"
-        android:textStyle="bold" />
+        android:textSize="21dp"
+        android:textStyle="bold"
+        android:layout_above="@+id/map" />
 
 </RelativeLayout>

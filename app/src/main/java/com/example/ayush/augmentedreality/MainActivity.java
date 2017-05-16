@@ -314,11 +314,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         startActivity(intent);
     }
 
-    public void newIdentificationActivityOnClick(View V) {
-        Intent intent = new Intent(getApplicationContext(), Main9Activity.class);
-        startActivity(intent);
-    }
-
     public void newMapActivityOnClick(View V) {
         Intent intent = new Intent(getApplicationContext(), Main3Activity.class);
         startActivity(intent);

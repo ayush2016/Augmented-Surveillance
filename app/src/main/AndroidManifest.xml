@@ -40,7 +40,6 @@
 
         <activity android:name=".Main3Activity" />
         <activity android:name=".Main4Activity" />
-        <activity android:name=".Main9Activity" />
         <activity android:name=".OpenCVActivity"></activity>
     </application>
 
