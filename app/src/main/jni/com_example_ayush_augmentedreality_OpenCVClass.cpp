@@ -61,6 +61,11 @@ JNIEXPORT void JNICALL Java_com_example_ayush_augmentedreality_OpenCVClass_human
     string dist_text_fixed;
     int mUserIdNo = user;
 
+   // circle(frame, Point(320, 240), 5.0, Scalar(0, 0, 255), 1, 8);
+    line(frame, Point(0, 240), Point(640, 240), Scalar(110, 220, 0), 2,
+         8);
+
+    /*
     for (int i = 3; i < 12; i++) {
         // line(frame, Point(0, pixel_distance[i]), Point(640, pixel_distance[i]), Scalar(110, 220, 0),
         //      2, 8);
@@ -100,6 +105,7 @@ JNIEXPORT void JNICALL Java_com_example_ayush_augmentedreality_OpenCVClass_human
         putText(frame, haversine_dist_text, cvPoint(30, 30),
                 FONT_HERSHEY_COMPLEX_SMALL, 0.8, cvScalar(200, 200, 250), 1, 1);
     }
+     */
 
     detectHuman2(frame, distance12, distance23, distance31, mUserIdNo);
 }

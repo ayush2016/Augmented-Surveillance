@@ -1,5 +1,9 @@
 package com.example.ayush.augmentedreality;
 
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,7 +18,11 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 
-public class Main9Activity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
+public class Main9Activity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2, SensorEventListener {
+
+    private SensorManager sensorManager;
+    private Sensor sensorAccelerometer;
+    static double valueAzimuth, valueRoll, valuePitch;
 
     private static final String TAG = "Main9Activity";
     BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
@@ -52,6 +60,11 @@ public class Main9Activity extends AppCompatActivity implements CameraBridgeView
         javaCameraView.setCvCameraViewListener(this);
         //javaCameraView.setMaxFrameSize(320,240);
         javaCameraView.setMaxFrameSize(640, 480);
+
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensorAccelerometer = sensorManager.getDefaultSensor(
+                Sensor.TYPE_ACCELEROMETER);
+
     }
 
     @Override
@@ -60,6 +73,7 @@ public class Main9Activity extends AppCompatActivity implements CameraBridgeView
         if (javaCameraView != null) {
             javaCameraView.disableView();
         }
+        sensorManager.unregisterListener(this);
     }
 
     @Override
@@ -68,6 +82,25 @@ public class Main9Activity extends AppCompatActivity implements CameraBridgeView
         if (javaCameraView != null) {
             javaCameraView.disableView();
         }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor arg0, int arg1) {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+
+  /*
+   * event.values[0]: azimuth, rotation around the Z axis.
+   * event.values[1]: pitch, rotation around the X axis.
+   * event.values[2]: roll, rotation around the Y axis.
+   */
+        valueAzimuth = Math.toDegrees(event.values[0]);
+        valuePitch = Math.toDegrees(event.values[1]);
+        valueRoll = Math.toDegrees(event.values[2]);
+        Log.i(TAG, "Azimuth, Pitch, Roll Values: " + valueAzimuth + " " + valuePitch + " " + valueRoll);
     }
 
     @Override
@@ -80,6 +113,9 @@ public class Main9Activity extends AppCompatActivity implements CameraBridgeView
             Log.d(TAG, "OpenCV not loaded!");
             OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_2_0, this, mLoaderCallback);
         }
+        sensorManager.registerListener(this,
+                sensorAccelerometer,
+                SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
