@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -40,7 +40,8 @@
 
         <activity android:name=".Main3Activity" />
         <activity android:name=".Main4Activity" />
-        <activity android:name=".OpenCVActivity"></activity>
+        <activity android:name=".OpenCVActivity" />
+        <activity android:name=".Main2Activity"></activity>
     </application>
 
 </manifest>

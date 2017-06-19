@@ -328,4 +328,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         Intent intent = new Intent(getApplicationContext(), OpenCVActivity.class);
         startActivity(intent);
     }
+
+    public void newIntruderActivityOnClick(View V) {
+        Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+        startActivity(intent);
+    }
 }

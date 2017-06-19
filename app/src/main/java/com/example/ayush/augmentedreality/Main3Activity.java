@@ -140,17 +140,20 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
         currLocationMarker = mGoogleMap.addMarker(markerOptions);
 
         // Toast.makeText(this, "Location Changed", Toast.LENGTH_SHORT).show();
-        if(mFirebaseUser.getUid().equals("Rvev8SzktpWMN4COLHS6yWQOnxQ2")){
+        if (mFirebaseUser.getUid().equals("Rvev8SzktpWMN4COLHS6yWQOnxQ2")) {
             drawLocations("V5GaSfckMkXXjra3Hq3BqXgdzt63");
             drawLocations("hrm3XLx0FaS9NU2QnmLwfNxa5Lk2");
+            drawLocations("m7FcyUTqfzbY6JYSVCyiQGzhJq22");
         }
-        if(mFirebaseUser.getUid().equals("V5GaSfckMkXXjra3Hq3BqXgdzt63")){
+        if (mFirebaseUser.getUid().equals("V5GaSfckMkXXjra3Hq3BqXgdzt63")) {
             drawLocations("Rvev8SzktpWMN4COLHS6yWQOnxQ2");
             drawLocations("hrm3XLx0FaS9NU2QnmLwfNxa5Lk2");
+            drawLocations("m7FcyUTqfzbY6JYSVCyiQGzhJq22");
         }
-        if(mFirebaseUser.getUid().equals("hrm3XLx0FaS9NU2QnmLwfNxa5Lk2")){
+        if (mFirebaseUser.getUid().equals("hrm3XLx0FaS9NU2QnmLwfNxa5Lk2")) {
             drawLocations("V5GaSfckMkXXjra3Hq3BqXgdzt63");
             drawLocations("Rvev8SzktpWMN4COLHS6yWQOnxQ2");
+            drawLocations("m7FcyUTqfzbY6JYSVCyiQGzhJq22");
         }
     }
 
@@ -196,6 +199,15 @@ public class Main3Activity extends AppCompatActivity implements OnMapReadyCallba
                             .position(mLatLng)
                             .title(timestamp + " ayushvijay.iitg")
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.grey));
+                    Marker mMarker = mGoogleMap.addMarker(mMarkerOption);
+                    markerList.add(mMarker);
+                }
+
+                if (userId.equals("m7FcyUTqfzbY6JYSVCyiQGzhJq22")) {
+                    MarkerOptions mMarkerOption = new MarkerOptions()
+                            .position(mLatLng)
+                            .title(timestamp + " Unknown")
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.enemy));
                     Marker mMarker = mGoogleMap.addMarker(mMarkerOption);
                     markerList.add(mMarker);
                 }

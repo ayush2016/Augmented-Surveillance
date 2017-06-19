@@ -11,7 +11,11 @@
     <string name="sign_up_text">Sign Up!</string>
     <string name="action_logout">Logout</string>
     <string name="master_data">MASTER DATA</string>
-    <string name="map">TRACKING</string>
+    <string name="map">Surveillance Map</string>
     <string name="opencv">IDENTIFICATION</string>
     <string name="runtime_permissions_txt">Please enable required permissions.</string>
+    <string name="share_intruder_location">Share Intruder Location</string>
+    <string name="longitude">Longitude in decimal format</string>
+    <string name="latitude">Latitude in decimal format</string>
+    <string name="update">Update</string>
 </resources>
