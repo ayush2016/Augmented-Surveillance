@@ -1,4 +1,4 @@
-Augmented WarZone
+Augmented Surveillance
 
 Problem breakdown:-
 a. Get position data of person(s) using distance/ location sensors.
